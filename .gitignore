@@ -25,7 +25,7 @@ venv/
 *.vrb
 *.lof
 *.lot
-
+*.pdf
 
 .DS_Store
 Thumbs.db
