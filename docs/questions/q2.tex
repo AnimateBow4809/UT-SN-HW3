@@ -19,4 +19,15 @@
 		We know that our graph is not balanced if we find a cycle in the reduced graph that has an odd number of edges the cycle $ABCDEA$ has $5$ edges thus this graph is not balanced
 		}
 	\end{subquestion}
+	\begin{subquestion}{The objective is to transform the reduced graph $G'$ into a fully bipolar structure in accordance with the definition of strong structural balance, such that the supernodes are partitioned into exactly two opposing coalitions. Determine the minimum number of edge sign changes (from negative to positive) required to achieve this configuration. Additionally, specify which edge or edges in the reduced graph $G'$ must be modified in order to obtain the desired bipolar partition.}
+		\answer{
+		To give our answer we will be using the reduced graph calculated in the last sub-question between any 2 super-nodes the maximum diffrences to be solved is $2$ so we choose randomly between any of the 2 super-nodes who have the most diffrences in our case D and C and we start adding super-nodes to these super-nodes so that we can get a biploar structure from the start node A is a free agent to each of these and can be added to any of them so we skip node A for now for node B it is optimal for it to join node D since it only has 1 edge that needs to change signs edge $4 \rangle 11$ which corresponds with edge BD of the reduced graph and with this we can decide that A will go to C and for E there are two choices which have the same effect of changing a single edge so we could either flip the sign of edge $7 \rangle 9$ or $9 \rangle 10$ for the sake of this question lets flip the sign of edge  $9 \rangle 10$ which corresponds to edge ED in our reduced graph effectively joining E and D so with the change of 2 Edge signs  we have reached strong balance in terms of the old nodes we would say one side is $\{A,C\}$ and the other side is $\{B,E,D\}$ but this isn't actually true since with our 2 edge changes B and E both have merged With D making the reduce graph have only 3 super-nodes:
+		\begin{itemize}
+			\item super-node A containing nodes $\{6,7,8\}$			
+			\item super-node C containing nodes $\{14,15,16,17,18\}$
+			\item super-node D containing nodes $\{1,2,3,4,5,9,10,11,12,13\}$					
+		\end{itemize}
+		and this new reduced graph has 3 edges AD and CD which have the $-$ sign
+		}
+	\end{subquestion}
 \end{question}
