@@ -1,33 +1,44 @@
-
 \begin{question}
 	\questiontext{Graph Reduction in Large and Irregular Signed Networks}
+	
 	\begin{subquestion}{Using the standard graph reduction algorithm based on positive connected components, construct the reduced graph $G'$. Clearly specify the vertices of $G'$ (i.e., the supernodes), listing the original nodes contained in each supernode.}
-	\answer{
-	After running the graph reduction algorithm we reach 5 super-nodes listed below:
-	\begin{itemize}
-		\item super-node A containing nodes $\{6,7,8\}$
-		\item super-node B containing nodes $\{1,2,3,4,5\}$
-		\item super-node C containing nodes $\{14,15,16,17,18\}$
-		\item super-node D containing nodes $\{10,11,12,13\}$
-		\item super-node E containing node $\{9\}$		
-	\end{itemize}
-	The edges of the reduced graph are all annotated with $-$ sign and they are $\{AB,BC,CD,DE,EA,BD\}$
-	}
-	\end{subquestion}
-	\begin{subquestion}{By analyzing the structure of the reduced graph $G'$, determine whether the original network $G$ satisfies the property of strong structural balance. Provide your argument solely based on the examination of cycles present in the graph.}
 		\answer{
-		We know that our graph is not balanced if we find a cycle in the reduced graph that has an odd number of edges the cycle $ABCDEA$ has $5$ edges thus this graph is not balanced
+			After applying the graph reduction algorithm, we obtain five supernodes, listed below:
+			\begin{itemize}
+				\item Supernode $A$ containing nodes $\{6,7,8\}$
+				\item Supernode $B$ containing nodes $\{1,2,3,4,5\}$
+				\item Supernode $C$ containing nodes $\{14,15,16,17,18\}$
+				\item Supernode $D$ containing nodes $\{10,11,12,13\}$
+				\item Supernode $E$ containing node $\{9\}$
+			\end{itemize}
+			
+			All edges in the reduced graph are annotated with a negative sign. The edge set of the reduced graph is
+			$\{AB, BC, CD, DE, EA, BD\}$.
 		}
 	\end{subquestion}
+	
+	\begin{subquestion}{By analyzing the structure of the reduced graph $G'$, determine whether the original network $G$ satisfies the property of strong structural balance. Provide your argument solely based on the examination of cycles present in the graph.}
+		\answer{
+			A reduced graph violates strong structural balance if it contains a cycle with an odd number of negative edges. In the reduced graph $G'$, the cycle $ABCDEA$ consists of five edges, all of which are negative. Since this cycle has an odd length, the graph is not strongly structurally balanced.
+		}
+	\end{subquestion}
+	
 	\begin{subquestion}{The objective is to transform the reduced graph $G'$ into a fully bipolar structure in accordance with the definition of strong structural balance, such that the supernodes are partitioned into exactly two opposing coalitions. Determine the minimum number of edge sign changes (from negative to positive) required to achieve this configuration. Additionally, specify which edge or edges in the reduced graph $G'$ must be modified in order to obtain the desired bipolar partition.}
 		\answer{
-		To give our answer we will be using the reduced graph calculated in the last sub-question between any 2 super-nodes the maximum diffrences to be solved is $2$ so we choose randomly between any of the 2 super-nodes who have the most diffrences in our case D and C and we start adding super-nodes to these super-nodes so that we can get a biploar structure from the start node A is a free agent to each of these and can be added to any of them so we skip node A for now for node B it is optimal for it to join node D since it only has 1 edge that needs to change signs edge $4 \rangle 11$ which corresponds with edge BD of the reduced graph and with this we can decide that A will go to C and for E there are two choices which have the same effect of changing a single edge so we could either flip the sign of edge $7 \rangle 9$ or $9 \rangle 10$ for the sake of this question lets flip the sign of edge  $9 \rangle 10$ which corresponds to edge ED in our reduced graph effectively joining E and D so with the change of 2 Edge signs  we have reached strong balance in terms of the old nodes we would say one side is $\{A,C\}$ and the other side is $\{B,E,D\}$ but this isn't actually true since with our 2 edge changes B and E both have merged With D making the reduce graph have only 3 super-nodes:
-		\begin{itemize}
-			\item super-node A containing nodes $\{6,7,8\}$			
-			\item super-node C containing nodes $\{14,15,16,17,18\}$
-			\item super-node D containing nodes $\{1,2,3,4,5,9,10,11,12,13\}$					
-		\end{itemize}
-		and this new reduced graph has 3 edges AD and CD which have the $-$ sign
+			To address this question, we work directly with the reduced graph obtained in the previous subquestion. Among all pairs of supernodes, the maximum number of inconsistencies that must be resolved is two. We therefore select supernodes $C$ and $D$ as the initial representatives of the two opposing coalitions.
+			
+			Supernode $A$ is initially neutral with respect to both coalitions and is temporarily left unassigned. Supernode $B$ is optimally assigned to the coalition containing $D$, since this requires only a single sign change: flipping the sign of edge $4 \to 11$, which corresponds to edge $BD$ in the reduced graph.
+			
+			With this assignment, supernode $A$ is placed in the coalition containing $C$. For supernode $E$, there are two equally optimal options, each requiring one sign change. These correspond to flipping either edge $7 \to 9$ or $9 \to 10$. For concreteness, we choose to flip the sign of edge $9 \to 10$, which corresponds to edge $ED$ in the reduced graph, thereby assigning $E$ to the coalition containing $D$.
+			
+			After performing two edge sign changes in total, the network achieves strong structural balance. Although this initially suggests a bipartition of $\{A, C\}$ and $\{B, D, E\}$, the sign changes cause supernodes $B$ and $E$ to merge with $D$. As a result, the reduced graph now consists of three supernodes:
+			\begin{itemize}
+				\item Supernode $A$ containing nodes $\{6,7,8\}$
+				\item Supernode $C$ containing nodes $\{14,15,16,17,18\}$
+				\item Supernode $D$ containing nodes $\{1,2,3,4,5,9,10,11,12,13\}$
+			\end{itemize}
+			
+			The final reduced graph contains two negative edges, $AD$ and $CD$, and satisfies the conditions for strong structural balance.
 		}
 	\end{subquestion}
 \end{question}
