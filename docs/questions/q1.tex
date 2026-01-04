@@ -1,1 +1,21 @@
 
+\begin{question}
+	\questiontext{Optimizing Structural Balance in a Competitive Network}
+	\begin{subquestion}{Using a triadic (triangle-based) analysis, identify the structural patterns that are inconsistent with the definition of strong structural balance. In your answer, specify examples of problematic triangles and describe the sign configuration of their edges.}
+		\answer{
+		if a complete graph has structural balance we should be able to split it into 2 clusters where inside each cluster the relationship between the nodes is positive but between clusters the relationship between the nodes would be negative the structural patterns that are inconsisitent with the definition of strong balance are when the product of the edges in a triangle are negative so for instance when we have 2 positive edges and one negative and when we have 3 negative edges we consider the triangle unbalanced and if such triangles exist inside a graph the graph is not strongly balanced for instance in the given graph to name a few unbalanced triangles we have:
+		\begin{enumerate}
+			\item The triangle BCD is unbalanced since CD and CB is positive but DB is negative making the product of signs negative
+			\item  The triangle ABD is weakly balanced since all of its edges are negative making the product of signs negative
+			\item  The triangle ACD is unbalanced since AC and CD are positive and but AD is negative making the product of signs negative
+		\end{enumerate}
+		There are many more examples we could make on unbalanced triangles in this graph and we will be discussing why these triangles are created and how to fix them in the next sub-question
+		}
+	\end{subquestion}
+	\begin{subquestion}{The objective is to transform the network into a fully balanced two-faction structure, while minimizing the number of sign changes on edges.}
+		\begin{enumerate}
+			\item  Determine which edge or edges must change their sign in order for the network to
+			achieve strong structural balance.
+		\end{enumerate}
+	\end{subquestion}
+\end{question}
