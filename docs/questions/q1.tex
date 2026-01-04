@@ -1,31 +1,43 @@
-
 \begin{question}
 	\questiontext{Optimizing Structural Balance in a Competitive Network}
+	
 	\begin{subquestion}{Using a triadic (triangle-based) analysis, identify the structural patterns that are inconsistent with the definition of strong structural balance. In your answer, specify examples of problematic triangles and describe the sign configuration of their edges.}
 		\answer{
-		if a complete graph has structural balance we should be able to split it into 2 clusters where inside each cluster the relationship between the nodes is positive but between clusters the relationship between the nodes would be negative the structural patterns that are inconsisitent with the definition of strong balance are when the product of the edges in a triangle are negative so for instance when we have 2 positive edges and one negative and when we have 3 negative edges we consider the triangle unbalanced and if such triangles exist inside a graph the graph is not strongly balanced for instance in the given graph to name a few unbalanced triangles we have:
-		\begin{enumerate}
-			\item The triangle BCD is unbalanced since CD and CB is positive but DB is negative making the product of signs negative
-			\item  The triangle ABD is weakly balanced since all of its edges are negative making the product of signs negative
-			\item  The triangle ACD is unbalanced since AC and CD are positive and but AD is negative making the product of signs negative
-		\end{enumerate}
-		There are many more examples we could make on unbalanced triangles in this graph and we will be discussing why these triangles are created and how to fix them in the next sub-question
+			If a complete graph satisfies strong structural balance, it must be possible to divide the nodes into two clusters such that all relationships within each cluster are positive, while all relationships between clusters are negative. Structural patterns that are inconsistent with strong structural balance arise when the product of the signs of the edges in a triangle is negative. 
+			
+			This occurs, for example, when a triangle contains two positive edges and one negative edge, or when all three edges are negative. Such triangles are considered unbalanced. If any unbalanced triangles exist in a graph, the graph cannot be strongly balanced.
+			
+			For instance, in the given graph, some examples of unbalanced triangles are:
+			\begin{enumerate}
+				\item The triangle $BCD$ is unbalanced since $CD$ and $CB$ are positive, while $DB$ is negative, resulting in a negative product of signs.
+				\item The triangle $ABD$ is weakly balanced, since all of its edges are negative, again producing a negative product of signs.
+				\item The triangle $ACD$ is unbalanced because $AC$ and $CD$ are positive, while $AD$ is negative, yielding a negative product.
+			\end{enumerate}
+			
+			There are many additional examples of unbalanced triangles in this graph. In the next subquestion, we discuss why these triangles arise and how they can be eliminated.
 		}
 	\end{subquestion}
+	
 	\begin{subquestion}{The objective is to transform the network into a fully balanced two-faction structure, while minimizing the number of sign changes on edges.}
 		\begin{enumerate}
-			\item  Determine which edge or edges must change their sign in order for the network to 
-			achieve strong structural balance.
+			\item Determine which edge or edges must change their sign in order for the network to achieve strong structural balance.
 			\answer{
-			For this question the approach we took was to try and split the graph into 2 different clusters since we know that if a graph is strongly balanced it can be divided into 2 clusters where inside each cluster the relationship between the nodes is positive but between clusters the relationship between the nodes would be negative and in doing so we divided the graph into 2 clusters ${A,B,C}$ and ${D,E,F}$ and we found that the minimum number of edges to be replaced so that the graph achives balance is 2 and the edges are:
-			\begin{enumerate}
-				\item  AB should change from $-$ to $+$ since the nodes are both inside the same cluster
-				\item  CD should change from $+$ to $-$ since the nodes are in different clusters
-			\end{enumerate}
+				To address this question, we attempted to partition the graph into two clusters. As established by structural balance theory, a strongly balanced graph can be divided into two groups such that relationships within each group are positive and relationships between the groups are negative.
+				
+				Following this approach, we partitioned the graph into the clusters $\{A, B, C\}$ and $\{D, E, F\}$. We found that the minimum number of edge sign changes required to achieve strong structural balance is two. The required changes are:
+				\begin{enumerate}
+					\item The edge $AB$ should change from $-$ to $+$, since both nodes belong to the same cluster.
+					\item The edge $CD$ should change from $+$ to $-$, since the nodes belong to different clusters.
+				\end{enumerate}
 			}
+			
 			\item After applying these changes, analyze whether the original bipartition of the nodes is preserved or whether a reorganization of the groups is required. If a reorganization occurs, specify the new partition and explain why it is structurally preferable.
 			\answer{
-			
+				In this case, the original bipartition is preserved. The updated edge configuration is structurally preferable for the following reasons:
+				\begin{enumerate}
+					\item The minimum possible number of edges was modified.
+					\item All unbalanced triangles have been eliminated, thereby removing structural tension and reducing the cognitive stress experienced by the nodes.
+				\end{enumerate}
 			}
 		\end{enumerate}
 	\end{subquestion}
