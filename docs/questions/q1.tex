@@ -14,8 +14,19 @@
 	\end{subquestion}
 	\begin{subquestion}{The objective is to transform the network into a fully balanced two-faction structure, while minimizing the number of sign changes on edges.}
 		\begin{enumerate}
-			\item  Determine which edge or edges must change their sign in order for the network to
+			\item  Determine which edge or edges must change their sign in order for the network to 
 			achieve strong structural balance.
+			\answer{
+			For this question the approach we took was to try and split the graph into 2 different clusters since we know that if a graph is strongly balanced it can be divided into 2 clusters where inside each cluster the relationship between the nodes is positive but between clusters the relationship between the nodes would be negative and in doing so we divided the graph into 2 clusters ${A,B,C}$ and ${D,E,F}$ and we found that the minimum number of edges to be replaced so that the graph achives balance is 2 and the edges are:
+			\begin{enumerate}
+				\item  AB should change from $-$ to $+$ since the nodes are both inside the same cluster
+				\item  CD should change from $+$ to $-$ since the nodes are in different clusters
+			\end{enumerate}
+			}
+			\item After applying these changes, analyze whether the original bipartition of the nodes is preserved or whether a reorganization of the groups is required. If a reorganization occurs, specify the new partition and explain why it is structurally preferable.
+			\answer{
+			
+			}
 		\end{enumerate}
 	\end{subquestion}
 \end{question}
