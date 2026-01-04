@@ -1,0 +1,25 @@
+
+\begin{question}
+	\questiontext{Stress Centrality}
+	\begin{subquestion}{Given a directed graph G = ( V, E ) , the stress centrality of a node and an edge are defined as::}
+		\[\begin{gathered}
+			{C_s}({n_i}) = \sum\limits_{u \ne {n_i} \in V} {\sum\limits_{v \ne {n_i} \in V} {{\sigma _{uv}}({n_i})} }  \hfill \\
+			{C_s}(e) = \sum\limits_{u \in V} {\sum\limits_{v \in V} {{\sigma _{uv}}(e)} }  \hfill \\ 
+		\end{gathered} \]
+		where $\sigma_{st}(v)$ counts the number of shortest paths between $s$ and $t$ that pass through node $v$, and $\sigma_{st}(e)$ counts the number of shortest paths between $s$ and $t$ that pass through edge $e$.
+		\begin{subquestion}{Explain the relationship between the stress centrality $C_s$ of a node $v$ and the stress centrality values of the edges incident to $v$ (denoted by $\Gamma(v)$). Here, $\Gamma(v)$ represents the set of edges that have $v$ as one of their endpoints.}
+			\answer{
+				To derive this relationship, we decompose the total stress centrality of all edges incident to $v$, denoted as $\Gamma(v)$. Every shortest path that utilizes an incident edge falls into one of two categories:
+				\begin{enumerate}
+						\item \textbf{Paths traversing through $v$:} For any shortest path where $v$ is an internal node ($u \to \dots \to v \to \dots \to t$), the path must enter $v$ through one incident edge and exit through another. Consequently, each such path contributes exactly $2$ to the sum of incident edge stresses. This component represents $2 C_s(v)$.
+					
+					\item \textbf{Paths starting or ending at $v$:} Shortest paths where $v$ is either the source or the destination ($v \to \dots \to t$ or $u \to \dots \to v$) utilize only one edge in $\Gamma(v)$. Since the definition of node stress centrality $C_s(v)$ typically excludes paths where $v$ is an endpoint, these must be summed separately.
+				\end{enumerate}
+				The relationship is formally expressed as:
+				\[
+				\sum_{e \in \Gamma(v)} C_s(e) = \underbrace{2 \sum_{u \in V \setminus \{v\}} \sum_{t \in V \setminus \{u,v\}} \sigma_{ut}(v)}_{\text{paths passing through } v} + \underbrace{\sum_{u \in V \setminus \{v\}} (\sigma_{uv} + \sigma_{vu})}_{\text{paths starting or ending at } v}
+				\]
+			}
+		\end{subquestion}
+	\end{subquestion}
+\end{question}

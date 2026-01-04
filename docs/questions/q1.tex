@@ -1,0 +1,69 @@
+
+\begin{question}
+	\questiontext{Structural Index}
+	\begin{subquestion}{Explain what each of these functions represents (what information they provide about the network). In doing so, describe what a high value versus a low value of each function indicates.}
+    \answer{
+  
+    \begin{enumerate}
+    	
+    	\item \textbf{Global Communication Efficiency ($f_1$)}
+    	
+    	\begin{equation}
+    		f_1(G) = \frac{1}{n(n-1)} \sum_{u \neq v} \frac{1}{d(u, v)}
+    	\end{equation}
+    	
+    	This function measures the average speed and ease with which information spreads across the organization. A \textbf{high value} indicates a "flat" structure where employees can reach anyone quickly with few intermediaries, facilitating rapid decision-making. A \textbf{low value} suggests a siloed or highly hierarchical organization where information travels slowly through many bottlenecks.
+    	
+    	\item \textbf{Collaborative Redundancy and Local Density ($f_2$)}
+    	
+    	\begin{equation}
+    		f_2(G) = \frac{1}{n} \sum_{i \in V} \sum_{j \in N(i)} \left( p_{ij} + \sum_{\substack{q \in N(i) \\ q \neq j}} p_{iq} p_{qj} \right)^2
+    	\end{equation}
+    	
+    	This metric represents the intensity of local team clusters and how much an employee's attention is reinforced by a tight-knit circle. A \textbf{high value} indicates strong, redundant team structures where social capital is high and the network is resilient to individual absences. A \textbf{low value} indicates sparse local connections, suggesting employees may be working in isolation without a strong peer support system.
+    	
+    	\item \textbf{Structural Heterogeneity and Degree Entropy ($f_3$)}
+    	
+    	\begin{equation}
+    		f_3(G) = \frac{1}{n} \sum_{v \in V} \frac{d(v)}{\sum_{u \in V} d(u)} \log \left( \frac{d(v)}{\sum_{u \in V} d(u)} \right)
+    	\end{equation}
+    	
+    	This formula measures the diversity of influence and connectivity within the workforce. A \textbf{high value} (in magnitude) indicates a diverse range of roles, featuring both specialized individual contributors and highly connected "hubs" or bridge-builders. A \textbf{low value} suggests a very uniform network where every employee has a similar number of contacts, which can result in a lack of clear organizational "connectors."
+    	
+    	\item \textbf{Average Digital Presence ($f_4$)}
+    	
+    	\begin{equation}
+    		f_4(G) = \frac{1}{n} \sum_{v \in V} H(v)
+    	\end{equation}
+    	
+    	This represents the average amount of time employees spend working online. A \textbf{high value} indicates a highly digitally-active or remote-first workforce, though if extreme, it may point toward meeting fatigue or burnout. A \textbf{low value} suggests an organization that operates primarily offline (such as manual labor or face-to-face services) or is currently in a low-activity phase.
+    	
+    	\item \textbf{Total Organizational Connectivity ($f_5$)}
+    	
+    	\begin{equation}
+    		f_5(G) = \frac{1}{n} \sum_{v \in V} \sum_{u \in N(v)} w_{vu}
+    	\end{equation}
+    	
+    	This sums and averages the raw weights of all interactions to measure the total volume of work flowing through the network. A \textbf{high value} indicates high-intensity collaboration and "heavy" workloads across the organization's links. A \textbf{low value} indicates "thin" relationships where, despite being connected, the actual strength and frequency of interaction between colleagues is minimal.
+    	
+    \end{enumerate}
+
+    }
+	\end{subquestion}
+	
+	\begin{subquestion}{Determine which of these functions is a Structural Index (SI) and which ones are not. Provide a brief justification for your answer}
+		\answer{
+		\begin{enumerate}
+			\item \textbf{Global Communication Efficiency ($f_1$)}: Yes, SI. Depends only on shortest path distances between nodes; measures how efficiently information can flow through the network.
+			
+			\item \textbf{Collaborative Redundancy / Local Density ($f_2$)}: Yes, SI. If the proportions $p_{ij}$ are derived from intrinsic edge weights $w_{ij}$ of the weighted graph, $f_2$ depends purely on the weighted network topology and reflects relative connectivity patterns dictated by the network structure.
+			
+			\item \textbf{Structural Heterogeneity / Degree Entropy ($f_3$)}: Yes, SI. Uses node degrees only; measures diversity in connectivity and roles within the network.
+			
+			\item \textbf{Average Digital Presence ($f_4$)}: No, not SI. Depends on dynamic activity of nodes ($H(v)$), which is an external attribute not determined by network topology.
+			
+			\item \textbf{Total Organizational Connectivity ($f_5$)}: Yes, SI. If the edge weights $w_{ij}$ are intrinsic to the weighted graph structure, $f_5$ depends purely on the weighted topology and reflects the total connectivity encoded by the network structure.
+		\end{enumerate}
+		}
+	\end{subquestion}
+\end{question}

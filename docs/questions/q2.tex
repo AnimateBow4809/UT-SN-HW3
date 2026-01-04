@@ -1,0 +1,148 @@
+
+\begin{question}
+	\questiontext{Distances and Neighbors}
+	\begin{subquestion}{Consider the below network.}
+		For each of the following scenarios, indicate which node would be the best choice, giving
+		reasons:
+		\begin{enumerate}
+			\item The mayor wants to install a radio broadcast station so that, in a crisis, a single
+			nationwide message can reach all areas. The goal is that every node’s distance to
+			the station (independently of other nodes) is as small as possible —in other words,
+			the maximum distance from any node to the station should be minimized.
+			\answer{
+				To determine the optimal location for the radio station, we identify the \textbf{Graph Center} by computing the \textbf{Eccentricity} of each node. The eccentricity of a node is the distance to the farthest node in the network; minimizing this ensures that the maximum travel time for a broadcast signal is as small as possible.  
+				
+				The eccentricity vector $\epsilon$ for nodes $1$ through $15$ is:
+				\[
+				\epsilon = \begin{bmatrix} 
+					4.0 \\ 3.0 \\ 4.0 \\ 5.0 \\ 4.0 \\ 4.0 \\ 4.0 \\ 5.0 \\ 4.0 \\ 4.0 \\ 4.0 \\ 5.0 \\ 3.0 \\ 4.0 \\ 5.0
+				\end{bmatrix}
+				\]
+				
+				
+				The minimum eccentricity is $\min(\epsilon) = \mathbf{3.0}$, which occurs at \textbf{Node 2} and \textbf{Node 13}. Therefore, placing the radio station at either of these nodes ensures that every other node is reachable within at most 3 hops, providing the most efficient coverage across the network.
+			}
+			
+			\item  The mayor wants to choose a node for a bookstore so that the sum of distances from 
+			all residents to that node is minimized.
+			\answer{
+				To determine the optimal node for placing the bookstore, we use \textbf{closeness centrality}, 
+				which measures how close a node is on average to all other nodes in the graph. 
+				By choosing the node with the highest closeness centrality, we ensure that the nodes can reach 
+				the bookstore as quickly as possible on average.
+				
+				The formula for closeness centrality of a node $v$ is:
+				\[
+				C(v) = \frac{n-1}{\sum_{u \in V} d(v,u)}
+				\]
+				where $d(v,u)$ is the shortest-path distance between nodes $v$ and $u$, and $n$ is the total number of nodes.
+				
+				For our 15-node graph, the closeness centrality values are:
+				
+				\[
+				\begin{bmatrix}
+					0.4667 & 0.4667 & 0.4667 & 0.4 & 0.4516 \\
+					0.4516 & 0.4667 & 0.4242 & 0.4516 & 0.4375 \\
+					0.4118 & 0.4 & 0.5185 & 0.3684 & 0.2745
+				\end{bmatrix}
+				\]
+				
+				Node $i=13$ (value 0.5185) has the highest closeness centrality, so we choose it as the location 
+				for the bookstore to ensure efficient distance to other nodes.
+			}
+			\item Two stores have decided to open new branches in the city. Each person (node)
+			buys from the nearest store. If a person is at equal distance from both stores, their
+			purchases are split equally between them. First, select the best node to open store
+			A, then determine the best location for store B given that choice.
+			\answer{
+				From the closeness centrality analysis, we know that node 13 has the highest value, 
+				so it is the best choice for opening store A. Given store A at node 13, the nodes 
+				that would maximize the number of customers for store B are those with the highest 
+				customer counts. In this case, nodes 1, 3, 7, and 8 each attract 7.0 customers, 
+				making them all equally good candidates for store B.
+				
+				The number of customers each node would get if store A is at node 13 is shown below, 
+				with the best candidates for store B highlighted in bold:
+				\[
+				\begin{bmatrix}
+					1 & \mathbf{7.0} \\
+					2 & 6.0 \\
+					3 & \mathbf{7.0} \\
+					4 & 6.5 \\
+					5 & 6.5 \\
+					6 & 5.5 \\
+					7 & \mathbf{7.0} \\
+					8 & \mathbf{7.0} \\
+					9 & 6.5 \\
+					10 & 5.0 \\
+					11 & 5.5 \\
+					12 & 6.5 \\
+					14 & 2.0 \\
+					15 & 1.5
+				\end{bmatrix}
+				\]
+				Therefore, the recommended locations are: store A at node 13, and store B at any 
+				of nodes 1, 3, 7, or 8.
+			}
+
+		\end{enumerate}
+	\end{subquestion}
+	\begin{subquestion}{Consider the below network.}
+		\begin{enumerate}
+			\item What is the closeness centrality for node C ?
+			\answer{
+			The closeness centrality(both standard and normalized) for node C are as follows:
+			\[\begin{gathered}
+				{C_C}(c) = \frac{1}{{\sum\limits_{j = 1}^n {{d_{cj}}} }} = \frac{1}{{n - 1}} \hfill \\
+				{{\tilde C}_C}(c) = \frac{{n - 1}}{{\sum\limits_{j = 1}^n {{d_{cj}}} }} = \frac{{n - 1}}{{n - 1}} = 1 \hfill \\ 
+			\end{gathered} \]
+			}
+			\item  Derive the closeness centrality value for the nodes on the ring as a function of n
+			\answer{
+			The closeness centrality(both standard and normalized) for nodes other than node C are as follows:
+		\[\begin{gathered}
+			{C_C}({n_i}) = \frac{1}{{\sum\limits_{j = 1}^n {{d_{ij}}} }} = \frac{1}{{1 + 1 + 1 + (n - 4)(2)}} = \frac{1}{{2n - 5}} \hfill \\
+			{{\tilde C}_C}({n_i}) = \frac{{n - 1}}{{\sum\limits_{j = 1}^n {{d_{ij}}} }} = \frac{{n - 1}}{{1 + 1 + 1 + (n - 4)(2)}} = \frac{{n - 1}}{{2n - 5}} \hfill \\ 
+		\end{gathered} \]
+			for any node on the ring the 2 nodes beside it and the hub node have a distance of 1 and the rest $n-4$ nodes have a distance of 2 which goes through the hub
+			}
+			\item  Derive the betweenness centrality value for node C .
+			\answer{
+			we know that C is in every shortest path except for the neighbors of each node so $2$ nodes are gone and we also know that for neighbors of our neighbors we have 2 paths which one goes through C so $2$ nodes are gone and for the rest of the paths they all go through C so we would have $n-1$ nodes on the ring which have the following equation:
+			\[\begin{gathered}
+				{\delta _{uv}}({n_i}) = \frac{{{\sigma _{uv}}({n_i})}}{{{\sigma _{uv}}}} \hfill \\
+				{C_B}({n_i}) = \sum\limits_{u \ne {n_i}} {\sum\limits_{v \ne {n_i}} {{\delta _{uv}}({n_i})} }  \hfill \\
+				{\delta _{uv}}(C) = \left\{ {\begin{array}{*{20}{c}}
+						{\begin{array}{*{20}{c}}
+								0&{{d_{uv}} = 1} 
+						\end{array}} \\ 
+						{\begin{array}{*{20}{c}}
+								{\frac{1}{2}}&{{d_{uv}} = 2} 
+						\end{array}} \\ 
+						{\begin{array}{*{20}{c}}
+								1&{{d_{uv}} > 2} 
+						\end{array}} 
+				\end{array}} \right.\;\;where\;C \notin \;{d_{uv}}\; \hfill \\
+				{C_B}(C) = \frac{1}{2}(n - 1)(0 + 0 + 0 + \frac{1}{2} + \frac{1}{2} + (n - 6)) = \frac{{(n - 1)(n - 5)}}{2} \hfill \\ 
+			\end{gathered} \]
+			}
+		\end{enumerate}
+	\end{subquestion}
+	\begin{subquestion}{Consider an undirected tree of n nodes. A particular edge in the tree joins node 1 and 2 and divides the tree into two disjoint regions of n1 and n2 nodes, as sketched below:}
+		Show that the closeness centrality C1 and C2 of the two nodes are related by:
+		\[\frac{1}{{{C_1}}} + \frac{{{n_1}}}{n} = \frac{1}{{{C_2}}} + \frac{{{n_2}}}{n}\]
+		\answer{
+		The proof goes as follows:
+		\[\begin{gathered}
+			{C_C}(1) = \frac{n}{{\sum\limits_{j = 1}^n {{d_{1j}}} }} = \frac{n}{{\sum\limits_{j = 1}^{{n_1}} {{d_{1j}}}  + {n_2} + \sum\limits_{j = {n_1}}^{{n_1} + {n_2}} {{d_{2j}}} }} \hfill \\
+			{C_C}(2) = \frac{n}{{\sum\limits_{j = 1}^n {{d_{2j}}} }} = \frac{n}{{\sum\limits_{j = {n_1}}^{{n_1} + {n_2}} {{d_{2j}}}  + {n_1} + \sum\limits_{j = 1}^{{n_1}} {{d_{1j}}} }} \hfill \\
+			\frac{n}{{{C_C}(1)}} = {n_2} + \sum\limits_{j = 1}^{{n_1}} {{d_{1j}}}  + \sum\limits_{j = {n_1}}^{{n_1} + {n_2}} {{d_{2j}}}  \hfill \\
+			\frac{n}{{{C_C}(2)}} = {n_1} + \sum\limits_{j = {n_1}}^{{n_1} + {n_2}} {{d_{2j}}}  + \sum\limits_{j = 1}^{{n_1}} {{d_{1j}}}  \hfill \\
+			\frac{n}{{{C_C}(1)}} - {n_2} = \frac{n}{{{C_C}(2)}} - {n_1} \hfill \\
+			\frac{1}{{{C_C}(1)}} - \frac{{{n_2}}}{n} = \frac{1}{{{C_C}(2)}} - \frac{{{n_1}}}{n} \hfill \\
+			\frac{1}{{{C_C}(1)}} + \frac{{{n_1}}}{n} = \frac{1}{{{C_C}(2)}} + \frac{{{n_2}}}{n} \hfill \\
+			\frac{1}{{{C_1}}} + \frac{{{n_1}}}{n} = \frac{1}{{{C_2}}} + \frac{{{n_2}}}{n} \hfill \\
+		\end{gathered} \]
+		}
+	\end{subquestion}
+\end{question}

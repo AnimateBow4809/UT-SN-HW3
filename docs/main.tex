@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cleese Assignment (For Students)
+% LaTeX Template
+% Version 2.0 (27/5/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{float}  
+\usepackage{subcaption}
+\usepackage{url}
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Required
+\newcommand{\assignmentQuestionName}{Question} % The word to be used as a prefix to question numbers; example alternatives: Problem, Exercise
+\newcommand{\assignmentClass}{Social Networks} % Course/class
+\newcommand{\assignmentTitle}{Assignment\ \#2} % Assignment title or name
+\newcommand{\assignmentAuthorName}{Ali Dashtbozorg 810104302} % Student name
+
+% Optional (comment lines to remove)
+\newcommand{\assignmentClassInstructor}{Dr. Masoud Asadpour 15:00am} % Intructor name/time/description
+\newcommand{\assignmentDueDate}{Saturday,\ December\ 26,\ 2025} % Due date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\maketitle % Print the title page
+
+\thispagestyle{empty} % Suppress headers and footers on the title page
+
+\newpage
+
+\tableofcontents % Generates the table of contents
+\newpage
+\listoffigures   % Generates the list of figures
+\newpage
+
+\input{questions/q1.tex}
+\input{questions/q2.tex}
+\input{questions/q3.tex}
+\input{questions/q4.tex}
+\input{questions/q5.tex}
+
+\newpage 
+\begin{thebibliography}{9}  % '9' is enough since you have only one reference
+	
+	\bibitem{chatgpt} 
+	ChatGPT, \textit{Chat session used for assignment guidance}, 
+	\url{https://chatgpt.com/share/69518d24-9800-800d-8fe8-185a102b5f10}, accessed December 28, 2025.
+	
+\end{thebibliography}
+
+\end{document}

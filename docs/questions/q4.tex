@@ -1,0 +1,357 @@
+
+\begin{question}
+	\questiontext{Structural Analysis of Political Power}
+	In this assignment, you will analyze the interaction network (mutual likes) of 5,768 politicians worldwide on Facebook. This network is an Induced Subgraph containing exclusively political nodes. You must transition univariate statistical analysis to deep structural analysis to demonstrate how a politician’s topological position determines their real-world role.
+	\begin{subquestion}{Power Geometry (Quantity, Quality, and Access)}
+		Power in networks manifests in three forms: the volume of connections (Quantity), the importance of connections (Quality), and the speed of access to the entire network (Access).
+		\begin{enumerate}
+			\item  Centrality Calculations: Calculate Normalized Degree , Eigenvector Centrality , and Closeness Centrality for all. Extract and report the top 10 nodes for each metric.
+			\answer{
+				 We computed the \emph{Normalized Degree Centrality}, \emph{Eigenvector Centrality}, and \emph{Closeness Centrality} for all nodes in the network. The top 10 nodes for each metric are reported below.
+				
+				\begin{itemize}
+					\item \textbf{Top 10 by Normalized Degree Centrality:}
+					\begin{enumerate}
+						\item Manfred Weber
+						\item Joachim Herrmann
+						\item Katarina Barley
+						\item Arno Klare MdB
+						\item Katja Mast
+						\item Barack Obama
+						\item Angela Merkel
+						\item Niels Annen
+						\item Martin Schulz
+						\item Sir Peter Bottomley MP
+					\end{enumerate}
+					
+					\item \textbf{Top 10 by Eigenvector Centrality:}
+					\begin{enumerate}
+						\item Katarina Barley
+						\item Arno Klare MdB
+						\item Katja Mast
+						\item Christian Petry
+						\item Heike Baehrens
+						\item Klaus Mindrup
+						\item Michelle Müntefering
+						\item Niels Annen
+						\item Johannes Schraps
+						\item Sigmar Gabriel
+					\end{enumerate}
+					
+					\item \textbf{Top 10 by Closeness Centrality:}
+					\begin{enumerate}
+						\item Barack Obama
+						\item Michael Roth
+						\item Niels Annen
+						\item Tanja Fajon
+						\item Malcolm Turnbull
+						\item Mariano Rajoy Brey
+						\item Achim Post
+						\item Peter Tauber
+						\item Dietmar Nietan
+						\item Hillary Clinton
+					\end{enumerate}
+				\end{itemize}				
+			}
+			\item  Gap Analysis: Generate a Scatter Plot with Degree on the X-axis and Eigenvector on the Y-axis. Identify nodes that deviate significantly positively from the correlation line (Low Degree but High Eigenvector).
+			\answer{
+			  We performed a gap analysis by generating a scatter plot shown in Figure~\ref{fig:q4_a_plot} with \emph{Normalized Degree Centrality} on the X-axis and \emph{Eigenvector Centrality} on the Y-axis. A linear regression line was fitted to capture the overall correlation between quantity of connections (degree) and quality of connections (eigenvector).
+			
+			Nodes that lie significantly \emph{above} the regression line exhibit \textbf{high eigenvector centrality despite relatively low degree}, indicating disproportionate structural influence or \emph{power efficiency}. These nodes are identified via large positive residuals from the regression.
+			
+			The top 10 positive deviants (low degree / high eigenvector) are:
+			\begin{enumerate}
+				\item Christian Petry
+				\item Heike Baehrens
+				\item Katarina Barley
+				\item Klaus Mindrup
+				\item Arno Klare MdB
+				\item Michelle Müntefering
+				\item Katja Mast
+				\item Sigmar Gabriel
+				\item Johannes Schraps
+				\item Wolfgang Hellmich
+			\end{enumerate}
+			
+			These actors occupy strategically influential positions by being strongly connected to highly central nodes rather than maintaining a large number of connections. This highlights a distinction between \emph{connection volume} and \emph{connection quality}, which is not captured by degree centrality alone.
+			}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth,keepaspectratio]
+				{imgs/q4_a_plot.png}
+				\caption{scatter plot \emph{Normalized Degree Centrality} vs \emph{Eigenvector Centrality} showing positive deviants.}
+				\label{fig:q4_a_plot}
+			\end{figure}
+			\item  Three-Way Case Study: Select three politicians who exhibit Low Degree (ranked outside the top 100) but High Eigenvector (ranked within the top 50). Closeness Analysis: Examine the Closeness rank of these three individuals Role Analysis: Investigate the real-world names and positions of these selected
+			individuals. Does the mathematical analysis corroborate their actual roles (e.g.,
+			Chief of Staff, Executive Secretary, or Senior Advisor)?
+			\answer{
+			  To connect structural metrics with real-world roles, we selected three politicians who exhibit \emph{Low Degree Centrality} (ranked outside the top 100) but \emph{High Eigenvector Centrality} (ranked within the top 50). This combination highlights actors who are not broadly connected, yet are embedded within highly influential neighborhoods of the network.
+			
+			\textbf{Interpretive Framework (Closeness Centrality):}
+			\begin{itemize}
+				\item \textbf{High Closeness:} The individual resides in the \emph{geometric heart} of the network, acting with relative independence and direct access to many parts of the graph.
+				\item \textbf{Low Closeness:} The individual is \emph{structurally dependent} on powerful neighbors, indicating a marginal attachment to the core and influence mediated through elite ties.
+			\end{itemize}
+			
+			\begin{enumerate}
+				\item \textbf{Carsten Schneider} (\( \text{Degree Rank} = 228.5,\ \text{Eigenvector Rank} = 43,\ \text{Closeness Rank} = 29 \))  
+				Schneider’s high closeness places him near the geometric center of the network, suggesting operational independence despite a limited number of direct connections. This aligns with his real-world role as a senior parliamentary coordinator in the German Bundestag, where influence stems from central positioning rather than high interaction volume.
+				
+				\item \textbf{Bernd Lange} (\( \text{Degree Rank} = 118,\ \text{Eigenvector Rank} = 44,\ \text{Closeness Rank} = 14 \))  
+				Lange exhibits both high eigenvector and very high closeness, indicating strong central embeddedness and autonomy. This corroborates his role as Chair of the European Parliament’s Committee on International Trade, a position that naturally situates him at the network’s core with direct access to multiple influential actors.
+				
+				\item \textbf{Barbara Hendricks} (\( \text{Degree Rank} = 130.5,\ \text{Eigenvector Rank} = 33,\ \text{Closeness Rank} = 283.5 \))  
+				In contrast, Hendricks shows low closeness despite high eigenvector centrality. This pattern indicates reliance on a small set of powerful neighbors rather than broad network accessibility. Such a structure is consistent with her status as a former Federal Minister, where residual influence is maintained through elite, high-impact ties rather than central operational presence.
+			\end{enumerate}
+			
+			\textbf{Conclusion:}  
+			Incorporating closeness centrality sharpens the interpretation of influence. High eigenvector centrality alone captures \emph{who one is connected to}, while closeness reveals \emph{how independently} that influence is exercised. The three cases demonstrate two distinct modes of power: centrally embedded autonomous actors versus peripheral elites whose influence is mediated through powerful neighbors—both of which are accurately reflected by the network metrics.
+			}
+		\end{enumerate}
+	\end{subquestion}
+	
+	\begin{subquestion}{Information Bottlenecks}
+		Identify actors who are not necessarily the most famous, but who control the vital arteries
+		of connection within the network.
+		\begin{enumerate}
+			\item  Calculations \& Ranking: Calculate Betweenness Centrality for the entire network. Extract the top 10 nodes and report their corresponding Degree Rank alongside their names.
+			\answer{
+			We computed the \emph{Betweenness Centrality} for all nodes in the network, capturing the extent to which a node lies on the shortest paths between others and thus acts as a broker or bridge. The top 10 nodes based on betweenness centrality, along with their corresponding degree ranks, are reported below.
+			
+			\begin{center}
+				\begin{tabular}{lcc}
+					\hline
+					\textbf{Real Name} & \textbf{Betweenness Rank} & \textbf{Degree Rank} \\
+					\hline
+					Barack Obama      & 1  & 6 \\
+					Hillary Clinton   & 2  & 145.5 \\
+					Angela Merkel     & 3  & 7 \\
+					Justin Trudeau    & 4  & 27 \\
+					Malcolm Turnbull  & 5  & 35.5 \\
+					Manfred Weber     & 6  & 1 \\
+					Peter Tauber      & 7  & 38 \\
+					Betinho Gomes     & 8  & 122 \\
+					Niels Annen       & 9  & 8 \\
+					Boris Johnson     & 10 & 679.5 \\
+					\hline
+				\end{tabular}
+			\end{center}
+			
+			
+			}
+			\item  Rank Gap Analysis: Examine the table for individuals with Top-Tier Betweenness (Top 10) but Lower
+			Degree. These individuals are mathematical Bridges. Explain the structural differ-
+			ence between their position and that of Hubs.
+			
+			\answer{
+			  We examined nodes with \emph{Top-Tier Betweenness Centrality} (top 10) but comparatively lower \emph{Degree Centrality}. These individuals act as \textbf{mathematical bridges} in the network—nodes that connect otherwise distant parts of the graph without necessarily having many direct connections themselves.
+			
+			\textbf{Observation from the Top 10 Betweenness Table:}
+			\begin{itemize}
+				\item Nodes such as \textbf{Hillary Clinton} (\( \text{Degree Rank} = 145.5 \)) and \textbf{Boris Johnson} (\( \text{Degree Rank} = 679.5 \)) exemplify this phenomenon. Despite having moderate or low degree, they appear in the top 10 for betweenness because they lie on many shortest paths that connect different clusters.
+				\item In contrast, traditional \textbf{hubs} like \textbf{Manfred Weber} (\( \text{Degree Rank} = 1 \)) or \textbf{Angela Merkel} (\( \text{Degree Rank} = 7 \)) are highly connected nodes that accumulate influence through sheer volume of ties rather than strategic positioning.
+			\end{itemize}
+			
+			\textbf{Structural Difference:}  
+			\begin{itemize}
+				\item \textbf{Bridges:} Moderate or low degree, strategically positioned on key paths, critical for network connectivity between clusters, often controlling information or influence flow.
+				\item \textbf{Hubs:} High degree, central in local neighborhoods, influence derived from extensive direct connections rather than bridging disparate regions.
+			\end{itemize}
+			
+			\textbf{Conclusion:}  
+			Betweenness highlights nodes that maintain \emph{structural control} over the network, whereas degree identifies nodes with \emph{volumetric influence}. Bridges and hubs represent complementary forms of power: one by connecting clusters, the other by commanding a dense local neighborhood.
+			}
+			\item Contextual Role Analysis: Select three mediators from the list above. Using reliable sources, identify their real-world positions. Explain which countries, parties, or international organizations they bridge. (Reference the diversity of their Facebook friends’ nationalities as evidence).
+			
+			\answer{
+			We selected three individuals from the betweenness centrality ranking—\textbf{Malcolm Turnbull}, \textbf{Hillary Clinton}, and \textbf{Betinho Gomes}—to analyze whether their roles as mathematical bridges correspond to real-world bridging positions across countries, parties, or international networks.
+			
+			\begin{enumerate}
+				\item \textbf{Malcolm Turnbull}  
+				\textbf{Real‑World Position:} Former Prime Minister of Australia (2015–2018), leader of the Liberal Party of Australia, and long‑standing Member of Parliament.:contentReference[oaicite:0]{index=0}  
+				\textbf{Bridging Role:} As Prime Minister, Turnbull acted as a key interlocutor between Australia and major global partners including the United States, United Kingdom, and Asia‑Pacific nations. His high betweenness likely reflects cross‑regional links—politically between differing factions within the Commonwealth and economically between advanced and emerging markets. Turnbull’s public profile and leadership in major trilateral and multilateral forums suggest social media ties that span diverse nationalities and political milieus, consistent with structural bridging.
+				
+				\item \textbf{Hillary Clinton}  
+				\textbf{Real‑World Position:} Former United States Secretary of State (2009–2013), U.S. Senator, and presidential candidate. Clinton has extensive diplomatic experience across Europe, Asia, the Middle East, and Africa.:contentReference[oaicite:1]{index=1}  
+				\textbf{Bridging Role:} Clinton’s role as Secretary of State placed her at the center of U.S. foreign policy and major international negotiations (e.g., United Nations engagements, NATO diplomacy). Her network position as a bridge likely captures ties not only to U.S. political elites but also to foreign governments, international NGOs, and global civil society — reflecting heterogeneous nationalities in her extended professional and public networks. High betweenness despite moderate degree suggests influence through strategic elite connections rather than broad grassroots ties.
+				
+				\item \textbf{Betinho Gomes}  
+				\textbf{Real‑World Position:} Brazilian politician; former member of the Chamber of Deputies representing Pernambuco, affiliated with the Brazilian Social Democracy Party. He served in both state and federal legislatures (2003–2006, 2011–2019).:contentReference[oaicite:2]{index=2}  
+				\textbf{Bridging Role:} Gomes occupies a different scale of bridging: within Brazilian domestic politics, he connects regional actors (Pernambuco political circles) to the national legislature and party coalitions. His betweenness suggests that, although not a global political figure like Clinton or Turnbull, he functions as a connector across factions or legislative blocs within Brazil’s party system and between urban/rural constituencies. In network terms this reflects bridging across sub‑communities rather than international political blocs.
+				
+			\end{enumerate}
+			
+			for facebook connection only the following section was analyzed and it goes like:
+			\begin{enumerate}
+				\item  Malcolm Turnbull’s Facebook connections demonstrate his structural role as a bridge across diverse media, political, and institutional networks. His friends and pages include national media outlets (e.g., ABC News, Media Watch, The Chaser, The Age), political figures and organizations (Liberal Party of Australia, Young Liberal Movement, Tony Abbott, Scott Morrison, Josh Frydenberg), international leaders (Barack Obama, David Cameron, Narendra Modi, Christine Lagarde), and civic and cultural institutions (CSIRO, Australian Red Cross Lifeblood, Woollahra Council, Penrith Panthers). This diversity reflects both domestic and international reach, spanning party lines, governmental agencies, media, and global networks, which supports his mathematical position as a high-betweenness node: Turnbull connects otherwise separate clusters, mediating information and influence across multiple communities.
+				\item  Hillary Clinton’s Facebook connections highlight her bridging role across political, educational, and advocacy networks. Her connections include key political figures (President Bill Clinton, Kamala Harris, Joe Biden), family and legacy links (Chelsea Clinton), and institutions promoting education and women’s rights (Wellesley College, Women’s Suffrage National Monument Foundation). This network reflects both domestic and international influence, spanning U.S. federal politics, gender equality advocacy, and educational leadership, reinforcing her high-betweenness position: she connects otherwise distinct clusters of political, familial, and institutional networks, mediating influence across multiple spheres.
+				\item  Betinho Gomes’ Facebook connections illustrate his role as a political and regional bridge within Brazil. His network includes local and state-level actors (e.g., Regivaldo Antonio, Raul Henry, Armando Monteiro, Fernando Bezerra Coelho), government institutions and programs (Ministério da Integração e do Desenvolvimento Regional, Programa Cidades Sustentáveis, Governo de Pernambuco), party affiliations (PSDB, Roberto Freire, Luciana Santos), and regional media and cultural organizations (Diario de Pernambuco, Cultura PE, Porta dos Fundos). Additionally, he connects to national political figures and media outlets (Lula, Dilma Rousseff, Aécio Neves, Época, VEJA). This diversity reflects his structural position as a high-betweenness node: despite a moderate number of direct connections, he links regional, state, and national political and civic clusters, effectively mediating influence across multiple communities within Brazil.
+			\end{enumerate}  
+			} 
+		\end{enumerate}
+	\end{subquestion}
+	\begin{subquestion}{Power in Local Structures (Efficiency \& Visualization)}
+		Closeness Centrality serves as an index for access speed and independence. The goal is to identify Efficient Monitors: politicians who achieve optimal geometric positioning with minimal communication cost
+		\begin{enumerate}
+			\item Calculations: Calculate Closeness Centrality and Normalized Degree for all nodes. List the Top
+			10 Closeness nodes.
+			\answer{
+				Closeness centrality and normalized degree were computed for all nodes in the network. 
+				Table below reports the top 10 politicians ranked by closeness centrality, 
+				representing the most central actors in terms of average shortest-path distance to all other nodes 
+				(the geometric heart of the network).
+				
+				\begin{center}
+					\begin{tabular}{lcc}
+						\hline
+						\textbf{Real Name} & \textbf{Closeness} & \textbf{Normalized Degree} \\
+						\hline
+						Barack Obama        & 0.3522 & 0.0344 \\
+						Michael Roth        & 0.3093 & 0.0205 \\
+						Niels Annen         & 0.3074 & 0.0311 \\
+						Tanja Fajon         & 0.3020 & 0.0079 \\
+						Malcolm Turnbull    & 0.2996 & 0.0198 \\
+						Mariano Rajoy Brey  & 0.2993 & 0.0112 \\
+						Achim Post          & 0.2990 & 0.0221 \\
+						Peter Tauber        & 0.2968 & 0.0190 \\
+						Dietmar Nietan      & 0.2939 & 0.0234 \\
+						Hillary Clinton     & 0.2938 & 0.0107 \\
+						\hline
+					\end{tabular}
+				\end{center}
+				
+				These nodes form the geometric core of the network, as they can reach all other nodes with the 
+				smallest average number of steps. Notably, high closeness does not necessarily coincide with a high 
+				normalized degree, indicating that strategic positioning in the network is not solely determined 
+				by direct connectivity.
+			}
+			\item Statistical Exploration: Plot Normalized Degree (X-axis) vs. Closeness Centrality (Y-axis).
+			\answer{
+				We plotted \emph{Normalized Degree Centrality} against \emph{Closeness Centrality} for all nodes in the network to examine how local connectivity relates to global accessibility. The resulting scatter plot is shown in Figure~\ref{fig:q4_c_plot}.
+				
+				\textbf{Distribution Analysis:}
+				The distribution exhibits a dense clustering in the lower-left corner, transitioning into a sparse "efficiency frontier" along the upper boundary. 
+				\begin{itemize}
+					\item \textbf{The Core Cluster:} The vast majority of nodes reside at low values for both metrics, indicating a network dominated by peripheral actors with limited reach.
+					\item \textbf{Diminishing Returns:} We observe a logarithmic-like trend where Closeness Centrality increases sharply with initial gains in Degree, but levels off as Normalized Degree exceeds $0.02$. This suggests that after a certain threshold of popularity, adding more connections provides negligible improvements to an actor's "closeness" to the rest of the network.
+					\item \textbf{The Efficiency Gap:} The most notable feature is the vertical spread at low degree values. Nodes with identical degree counts show vastly different closeness scores, highlighting that \emph{who} one is connected to is mathematically more significant for global access than \emph{how many} connections one possesses.
+				\end{itemize}
+				
+				\textbf{Structural Liaisons:}
+				The \textbf{top-left quadrant} identifies actors who circumvent the typical correlation between quantity and access. As seen in the table below, these individuals occupy structurally advantageous positions, serving as efficient access points rather than highly connected hubs.
+				
+				\begin{center}
+					\begin{tabular}{lcc}
+						\hline
+						\textbf{Real Name} & \textbf{Closeness Rank} & \textbf{Degree Rank} \\
+						\hline
+						Hillary Clinton & 10.0 & 145.5 \\
+						Bernd Lange     & 14.0 & 118.0 \\
+						Gianni Pittella & 18.0 & 1236.5 \\
+						\hline
+					\end{tabular}
+				\end{center}
+				
+				The placement of \textbf{Gianni Pittella} is particularly significant; his high Closeness rank relative to a very low Degree rank suggests he acts as a "bridge" to high-degree hubs, allowing him to reach the network core with minimal direct social ties.
+			}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth,keepaspectratio]{imgs/q4_c_plot.png}
+				\caption{Scatter plot of \emph{Normalized Degree Centrality} vs. \emph{Closeness Centrality}. The distribution highlights a dense peripheral core and a sparse set of efficient structural liaisons in the upper-left quadrant.}
+				\label{fig:q4_c_plot}
+			\end{figure}
+			\item To understand the network architecture surrounding these individuals, visualize the Ego Network of one selected politician. Morphological Analysis: Is the central individual surrounded by a dense cluster, or are their neighbors dispersed across separate branches? How does this visual structure justify the high Closeness score?
+			\answer{
+				We selected \textbf{Hillary Clinton} as the representative politician from the top-left quadrant of the Normalized Degree vs. Closeness plot. 
+				The ego network shown in Figure~\ref{fig:q4_c2_plot} exhibits a hub-and-spoke morphology, where the central individual connects directly to a large number of otherwise weakly interconnected neighbors. Rather than forming a dense local cluster, the neighborhood is dispersed across multiple shallow branches. 
+				This structure results in very short average path lengths from the central node to the rest of the network, visually and structurally justifying her high closeness centrality score.
+			}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth,keepaspectratio]{imgs/q4_c2_plot.pdf}
+				\caption{Ego network of \textbf{Hillary Clinton}. The visualization shows a hub-and-spoke structure with dispersed neighbors rather than a dense cluster, explaining her high Closeness Centrality despite moderate degree.}
+				\label{fig:q4_c2_plot}
+			\end{figure}
+			\item Contextual Analysis: Based on their real-world titles, explain why their job description requires them to be at the geometric center of the graph. Contrast their structural position with Political Hubs (like Barack Obama, who possesses both High Degree and High Closeness).
+			\answer{
+				The politicians in the top-left quadrant—\textbf{Hillary Clinton}, \textbf{Bernd Lange}, and \textbf{Gianni Pittella}—occupy positions of high closeness but relatively low degree. Their real-world roles, such as senior legislators, committee chairs, or influential policymakers, require them to efficiently access and influence a wide range of other actors without maintaining numerous direct connections. Being at the geometric center allows them to reach most nodes in the network quickly, facilitating coordination, negotiation, and information flow across political factions.
+				
+				For example:
+				\begin{itemize}
+					\item \textbf{Hillary Clinton} (Closeness Rank 10, Degree Rank 145.5) – Former Secretary of State and Senator, able to access multiple political spheres efficiently.  
+					\item \textbf{Bernd Lange} (Closeness Rank 14, Degree Rank 118) – European Parliament member involved in international trade policy, requiring rapid access to diverse committees.  
+					\item \textbf{Gianni Pittella} (Closeness Rank 18, Degree Rank 1236.5) – Senior MEP coordinating across numerous legislative areas, benefiting from efficient network positioning despite lower local connectivity.
+				\end{itemize}
+				
+				In contrast, political hubs like \textbf{Barack Obama} combine high closeness with high degree, maintaining many direct connections while also having short paths to the rest of the network. While top-left quadrant politicians excel in efficiency of access and strategic positioning, hubs excel in both visibility and connectivity, making them highly influential across multiple network layers.
+			}
+		\end{enumerate}
+	\end{subquestion}
+	
+	\begin{subquestion}{Bonacich Power Dynamics}
+		In this section, the role of Bonacich power in the political network is examined. First, compute the largest eigenvalue of the adjacency matrix to ensure convergence. Then,calculate power for three scenarios:
+		\begin{enumerate}
+			\item Spectral Calculation and Power Regimes: Calculate the centrality scores under the following conditions:
+			\answer{
+				The largest eigenvalue of the adjacency matrix was computed to ensure convergence of the Bonacich power calculation:
+				
+				\[
+				\lambda_{\text{max}} = 60.6432, \quad \text{Convergence Bound } \frac{1}{\lambda_{\text{max}}} = 0.0165
+				\]
+				
+				We define $\kappa = 1 / \lambda_{\text{max}}$ and calculate the Bonacich power centrality under three scenarios:
+				
+				\begin{itemize}
+					\item \textbf{Neutral Regime} ($\beta = 0$): Centrality depends purely on direct connections without reinforcement or suppression from neighbors.
+					\item \textbf{Supportive Regime} ($\beta = 0.5 \cdot \kappa \approx 0.00825$): Positive influence from neighbors increases the centrality of nodes connected to already powerful nodes.
+					\item \textbf{Suppressive Regime} ($\beta = -0.5 \cdot \kappa \approx -0.00825$): Connections to powerful neighbors reduce a node’s centrality, emphasizing nodes that are less connected to influential actors.
+				\end{itemize}
+				
+				The Bonacich power centrality is then calculated using:
+				
+				\[
+				\mathbf{c}(\alpha, \beta) = (\mathbf{I} - \beta \mathbf{A})^{-1} \mathbf{1} \cdot \alpha
+				\]
+				
+				where $\alpha$ is a scaling factor (commonly set to 1), $\mathbf{A}$ is the adjacency matrix, and $\beta$ is set according to each regime. Each scenario highlights different structural advantages within the political network.
+			}
+			\item Structural Classification and Visual Analysis:
+			Compare node rankings obtained under the different Bonacich power parameter settings (neutral, supportive, and suppressive). Perform the analysis in the following steps:
+			\answer{
+				To analyze how nodes respond to changes in the Bonacich power parameter $\beta$, we tracked the rank trajectories of key nodes across the three regimes (neutral, supportive, suppressive) using a slope chart (Figure~\ref{fig:q4_d_plot}).
+				
+				Based on both the quantitative rank data and visual trends, nodes were categorized into three structural roles:
+				
+				\begin{center}
+					\begin{tabular}{lc}
+						\hline
+						\textbf{Structural Role} & \textbf{Count of Nodes} \\
+						\hline
+						Stable Actor       & 3112 \\
+						Power Inhibitor    & 1389 \\
+						Power Amplifier    & 1195 \\
+						\hline
+					\end{tabular}
+				\end{center}
+				
+				\textbf{Interpretation:}
+				\begin{itemize}
+					\item \textbf{Stable Actors}: These nodes exhibit minimal change in rank across the three regimes. Their centrality is largely determined by local connections, and they are neither strongly reinforced nor diminished by neighbors.  
+					\item \textbf{Power Amplifiers}: Nodes in this category experience substantial rank increases under the supportive regime ($\beta > 0$). Their structural position—typically connected to other influential nodes—allows them to benefit from positive feedback effects, amplifying their overall network power.  
+					\item \textbf{Power Inhibitors}: These nodes experience significant rank drops under the suppressive regime ($\beta < 0$). They are often linked to highly central neighbors, which in this regime reduces their relative power. This reflects the attenuation effect of being connected to already powerful nodes when influence is inversely weighted.
+				\end{itemize}
+				
+				Overall, the slope chart and classification reveal how network structure modulates power: nodes may gain or lose influence not only due to their direct connections but also through the amplification or inhibition transmitted by neighbors, illustrating the dynamic nature of Bonacich power in complex political networks.
+			}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth,keepaspectratio]{imgs/q4_d_plot.png}
+				\caption{Slope Chart tracking the rank trajectories of key nodes across the neutral, supportive, and suppressive Bonacich power regimes.}
+				\label{fig:q4_d_plot}
+			\end{figure}
+			
+		\end{enumerate}
+		
+	\end{subquestion}
+\end{question}

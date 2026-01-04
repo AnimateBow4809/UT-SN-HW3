@@ -1,0 +1,105 @@
+
+\begin{question}
+	\questiontext{Comparative Analysis of Ranking Algorithms in Directed Networks} 
+	In directed networks such as elections or scientific citations, the direction of edges signifies the flow of reputation. The objective of this assignment is to empirically observe the structural differences between two fundamental ranking methodologies: the HITS algorithm (which relies on endorsement by active peers or Hubs) and the PageRank algorithm (which operates on the principle of weighted voting). The analysis will be performed on the Wiki-Vote.txt dataset, which represents the voting network of Wikipedia users for administrator elections.
+	\begin{subquestion}{Ranking Comparison (HITS vs. PageRank)}
+		In this section, you will investigate whether the individuals identified as competent administrators (Authorities) by HITS correspond to those selected by PageRank.
+			\begin{enumerate}
+				\item  Calculation and Mapping: Execute both algorithms—HITS to extract Authority Scores and PageRank with the standard damping factor of $\alpha = 0.85$ . To facilitate a meaningful comparison, convert the raw scores into  Ranks for each node (where Rank 1 represents the highest score). Visualize the divergence between these two metrics by generating a Scatter Plot on a Log-Log scale , plotting the Authority Rank on the horizontal axis and the PageRank Rank on the vertical axis.
+				\answer{
+					\begin{itemize}
+						\item \textbf{Methodology and Ranking Logic:} 
+						The implementation utilizes \texttt{networkx} to calculate HITS Authority scores and PageRank ($\alpha=0.85$). To transform these into a comparable format, the raw scores $s$ are converted to ordinal ranks using \texttt{rankdata(-s, method='ordinal')}. This ensures that the node with the highest score receives Rank 1, and every node is assigned a unique rank based on its relative standing.
+						
+						\item \textbf{Overall Correlation:} 
+						The Log-Log scatter plot shown in Figure \ref{fig:q5_a_plot} reveals a strong positive correlation between Authority Rank and PageRank Rank, as evidenced by the dense clustering of data points along the $y = x$ dashed red line. This suggests that in the Wiki-Vote network, nodes that are considered "authoritative" (pointed to by high-quality hubs) are generally the same nodes that accumulate high PageRank (weighted votes).
+						
+						\item \textbf{High-Rank Consistency (Top Nodes):} 
+						At the top of the ranking (near $10^0$ and $10^1$), there is extremely high agreement between the two algorithms. In the context of Wikipedia administrator elections, this indicates that the most "obvious" or prominent candidates are identified consistently regardless of whether the algorithm prioritizes hub-based reinforcement (HITS) or the random-walk/weighted voting model (PageRank).
+						
+						\item \textbf{Mid-to-Low Rank Dispersion:} 
+						As we move toward the lower-ranked nodes ($10^2$ to $10^3$), the variance increases. The wider "cloud" of points in this region indicates that for average or less-active users, the two algorithms diverge:
+						\begin{itemize}
+							\item \textbf{HITS Authority} is highly sensitive to the presence of "Hubs" (nodes that vote for many authorities). If a node is voted for primarily by "ordinary" users who aren't active voters (low Hub score), HITS may rank it lower than PageRank would.
+							\item \textbf{PageRank} is influenced by the global link structure and the damping factor ($1 - \alpha$), which provides a "baseline" rank to all nodes, potentially leading to more stable rankings for nodes in sparse regions of the graph.
+						\end{itemize}
+						
+						\item \textbf{Conclusion:} 
+						The empirical results demonstrate that HITS and PageRank are structurally synergistic for social voting networks. While they rely on different mathematical foundations—eigenvector-based mutual reinforcement vs. stationary distribution of a Markov chain—they converge on the same "elite" set of nodes in the Wiki-Vote dataset.
+					\end{itemize}
+				}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.85\textwidth,keepaspectratio]{imgs/q5_a_plot.png}
+					\caption{Comparative analysis of node rankings in the Wiki-Vote network using HITS Authority and PageRank ($\alpha = 0.85$). The scatter plot, visualized on a Log-Log scale, illustrates a high degree of correlation between the two metrics; the red dashed line signifies perfect rank-order correspondence ($y = x$).}
+					\label{fig:q5_a_plot}
+				\end{figure}
+				\item  Divergence Analysis: Focus on nodes that deviate significantly from the diagonal line ( y = x ) in the rank comparison plot. Select representative nodes from different regions of the plot and analyze the structural reasons behind their divergent rankings. In your discussion, you should examine the local and global patterns of incoming links, consider the activity level and connectivity of the nodes endorsing them, and explain how these structural characteristics may lead to different evaluations by HITS and PageRank.
+				\answer{
+					To analyze the divergence between HITS Authority and PageRank in the Wiki-Vote dataset, we examined nodes that deviate significantly from the $y=x$ diagonal. The structural reasons for these discrepancies are categorized below:
+					
+					\subsubsection*{Category 1: Authority Rank $\gg$ PageRank (e.g., Nodes 5132, 5637)}
+					Nodes in this region are evaluated as high-quality "Authorities" by HITS but are penalized by PageRank.
+					\begin{itemize}
+						\item \textbf{Structural Observation:} These nodes possess relatively high in-degrees but are pointed to by "Professional Hubs" (nodes with an average out-degree of $\approx 200$).
+						\item \textbf{Reason for Divergence:} 
+						\begin{itemize}
+							\item \textbf{HITS:} The Authority score is the sum of the Hub scores of its predecessors. Since these nodes are endorsed by major hubs in the Wiki community, their Authority rank is high.
+							\item \textbf{PageRank:} PageRank distributes a node's influence equally among its out-links. Because the predecessors here point to hundreds of other nodes, the "rank juice" passed to any single node is heavily diluted (the $1/L(u)$ factor), resulting in a much lower PageRank.
+						\end{itemize}
+					\end{itemize}
+					
+					\subsubsection*{Category 2: PageRank Rank $\gg$ Authority (e.g., Nodes 7467, 8076)}
+					Nodes in this region appear in the "long tail" of the dataset, where PageRank values them significantly higher than HITS does.
+					\begin{itemize}
+						\item \textbf{Structural Observation:} These nodes have very low in-degrees (1 or 2) and are pointed to by "Exclusive Voters" (predecessors with an out-degree of exactly 1).
+						\item \textbf{Reason for Divergence:} 
+						\begin{itemize}
+							\item \textbf{PageRank:} Since the voter points to \textit{only} this node, the node receives $100\%$ of the voter's transferred rank without dilution. This makes the node a "stronger" destination in a random walk.
+							\item \textbf{HITS:} HITS requires a node to be pointed to by a good "Hub" to gain Authority. A voter who only points to a single person has a Hub score of nearly zero, as they do not provide a "directory" of multiple authorities. Consequently, HITS overlooks these nodes.
+						\end{itemize}
+					\end{itemize}
+				}
+			\end{enumerate}
+	\end{subquestion}
+	
+	\begin{subquestion}{Rank Stability Analysis}
+      The PageRank algorithm utilizes a parameter $\alpha$ (damping factor), which determines the patience of the random surfer in following links. This section examines how the hierarchy of power shifts as this parameter changes.
+      \begin{enumerate}
+      	\item Simulation \& Trajectory Interpretation: Perform a sensitivity analysis by executing PageRank across a spectrum of $\alpha$ values ranging from $0.50$ to $0.99$ . Construct a Line Chart to visualize the rank trajectories of the top $10$ nodes (as well as the specific anomalies identified in the previous section), with the vertical axis representing the rank.
+      	\answer{
+      		The sensitivity analysis conducted across the spectrum $\alpha \in [0.50, 0.99]$, shown in Figure~\ref{fig:q5_b_plot}, reveals a clear separation between structurally robust nodes and rank artifacts within the Wiki-Vote network.
+      		
+      		\begin{itemize}
+      			\item \textbf{High-Altitude Stability (Top 10 Nodes):}  
+      			A key observation is the remarkable stability of the ranking among the \textbf{Top 10 nodes}. Across the entire range of $\alpha$, these nodes exhibit minimal rank fluctuations and almost no rank crossings. This stability indicates that their importance is not dependent on a particular balance between teleportation and link-following, but instead arises from a combination of strong local connectivity and deep integration into the global structure of the network. Consequently, PageRank consistently identifies these nodes as the dominant power-holders regardless of the random surfer’s level of persistence.
+      			
+      			\item \textbf{Category 1 Nodes (Structural Ascent):}  
+      			Nodes such as 5132 and 5637 exhibit a clear \textbf{improvement in rank} as $\alpha$ increases.
+      			\begin{itemize}
+      				\item \textit{Interpretation:} These nodes are strongly favored by HITS because they are pointed to by well-established hubs. Although the individual incoming links may originate from high–out-degree nodes, increasing $\alpha$ allows PageRank to incorporate longer random walks and multi-hop paths. As teleportation diminishes, probability mass accumulates through upstream structural reinforcement, enabling these nodes to rise toward their HITS-perceived authority.
+      				\item \textit{Influence scope:} Their influence is therefore \textbf{distributed across distant regions of the graph}, rather than confined to a small local neighborhood.
+      			\end{itemize}
+      			
+      			\item \textbf{Category 2 Nodes (Structural Descent):}  
+      			Nodes such as 7033 and 3245 show a pronounced \textbf{decline in rank} as $\alpha$ increases.
+      			\begin{itemize}
+      				\item \textit{Interpretation:} These nodes rely on a small number of exclusive, low-degree predecessors and lack meaningful multi-hop reinforcement. At lower $\alpha$, the high teleportation rate acts as a smoothing mechanism that artificially boosts their rank. As $\alpha \to 0.99$, this smoothing effect disappears and global structural positioning dominates, causing these nodes to be overtaken by more deeply embedded vertices.
+      				\item \textit{Influence scope:} Their importance is primarily \textbf{local and fragile}, supported by shallow connectivity rather than by global reachability.
+      			\end{itemize}
+      		\end{itemize}
+      		
+      		\textbf{Random Surfer Interpretation:}  
+      		These trends can be directly explained through the behavior of the random surfer. At low $\alpha$, the surfer frequently teleports, increasing the visibility of peripheral or weakly connected nodes. As $\alpha$ increases, the surfer becomes more persistent in following links, favoring nodes that lie along many long paths and serve as convergence points for probability flow. Consequently, nodes with distributed, multi-hop influence improve in rank, while nodes dependent on teleportation experience systematic rank decay. This demonstrates how increasing $\alpha$ shifts PageRank from a locally smoothed measure toward a globally structural one.
+      	}
+      	
+      	\begin{figure}[H]
+      		\centering
+      		\includegraphics[width=0.85\textwidth,keepaspectratio]{imgs/q5_b_plot.png}
+      		\caption{PageRank Stability Analysis: Rank trajectories of top-tier nodes and anomalous outliers across a range of damping factors ($\alpha \in [0.5, 0.99]$). The Y-axis is inverted so that Rank 1 appears at the top. The plot demonstrates the high stability of the Top 10 nodes (reliable core) while highlighting the volatility of Category 1 and Category 2 nodes as the algorithm shifts from local to global structural prioritization.}
+      		\label{fig:q5_b_plot}
+      	\end{figure}
+      \end{enumerate}
+	\end{subquestion}
+	
+\end{question}
