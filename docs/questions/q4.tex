@@ -316,10 +316,42 @@
 					\end{itemize}
 				\end{itemize}
 				
-				The algorithm achieves a total reduction in frustration of $39.5$, indicating that the final clustering eliminates all structural inconsistencies and attains a fully balanced configuration.
-				
+				The algorithm achieves a total reduction in frustration of $39.5$, indicating that the final clustering eliminates all structural inconsistencies and attains a fully balanced configuration.				
 			}
-		\end{enumerate}
+		\end{enumerate}		
+	\end{subquestion}
+	\begin{subquestion}{Transitivity:}
+		\answer{
+			The \textbf{analyze\_transitivity} function evaluates the logical consistency of relationships within a graph by examining every possible triplet of nodes to identify transitive triads. A triad is considered transitive if, for any three nodes where node $A$ is connected to $B$ and $B$ is connected to $C$, a direct "shortcut" edge also exists between $A$ and $C$. The algorithm uses nested loops to iterate through all node combinations and \texttt{itertools.permutations} to check every directional path. If it finds a path $A \rightarrow B \rightarrow C$ that lacks the concluding $A$--$C$ connection, it flags the triad as non-transitive and increments a "missing edges" counter.
+			
+			In contrast, the \textbf{fix\_transitivity} function actively modifies the graph to ensure that it reaches a state of transitive closure. It operates through a ``while not fixed'' loop that repeatedly sweeps the graph, identifying any instances where two nodes share a common neighbor but lack a direct connection. When such a gap is discovered, the function automatically adds the missing edge and resets the fixed flag, forcing a re-evaluation of the entire graph. Because adding one edge can potentially create new non-transitive relationships elsewhere, the algorithm continues this iterative process until every ``friend of a friend'' in the network is directly connected. The function ultimately returns a transformed graph in which all reachable paths within each component are fully saturated with edges.
+			
+			\paragraph{Transitivity Analysis Results}
+			The transitivity properties of the original and modified graphs are summarized below.
+			
+			\begin{itemize}
+				\item \textbf{Original graph:}
+				\begin{itemize}
+					\item Number of edges: 820
+					\item Transitive pairs: 1,310,223
+					\item Non-transitive pairs: 3,177
+					\item Missing edges: 3,207
+					\item Transitivity ratio: 0.9976
+				\end{itemize}
+				
+				\item \textbf{After transitivity correction:}
+				\begin{itemize}
+					\item Number of edges added: 37,991
+					\item Total number of edges: 38,811
+					\item Transitive pairs: 1,313,400
+					\item Non-transitive pairs: 0
+					\item Missing edges: 0
+					\item Transitivity ratio: 1.0
+				\end{itemize}
+			\end{itemize}
+			
+			The results show that by adding the necessary edges to enforce transitivity, all non-transitive and missing pairs are eliminated, yielding a fully transitive graph with a transitivity ratio of 1.0.
+		}
 		
 	\end{subquestion}
 \end{question}
