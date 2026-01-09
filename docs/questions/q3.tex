@@ -1,0 +1,19 @@
+\begin{question}
+	\questiontext{Triadic Closure and Tie Stability in Social Networks}
+	 
+	\begin{subquestion}{Analyze the structural configuration of node A with respect to the Strong Triadic Closure (STC) principle. Discuss under what changes to the network structure or to the strength of existing ties this configuration could become consistent with the STC principle.}
+		\answer{
+			To satisfy the STC principle, if node $A$ has strong ties to nodes $B$ and $C$, then there must exist an edge (either a strong or a weak tie) between $B$ and $C$. Since the question states that $AD$ is a local bridge, it follows by definition that the tie between $A$ and $D$ must be weak in order for node $A$ to satisfy the STC principle. Therefore, no further modifications to the network are required.
+			
+			However, if the edge $AD$ were not a local bridge and were instead a strong tie, then by the STC principle there would need to exist an edge (either strong or weak) between $B$ and $D$, as well as an edge (either strong or weak) between $C$ and $D$.
+		}
+	\end{subquestion}
+	
+	\begin{subquestion}{Assume that the network satisfies the Strong Triadic Closure principle. Using a logical argument and the definition of a local bridge, show that the edge $(A, D)$ cannot be a strong tie.}
+		\answer{
+			We use a proof by contradiction. Assume, for the sake of contradiction, that the edge $A \to D$ is a strong tie. By the definition of the Strong Triadic Closure principle, this would imply that an edge of some strength must exist between nodes $D$ and $C$, and that an edge of some strength must also exist between nodes $D$ and $B$. 
+			
+			This contradicts the assumption that the edge $A \to D$ is a local bridge. Therefore, the assumption is false, and the edge $A \to D$ must be a weak tie.
+		}
+	\end{subquestion}
+\end{question}
