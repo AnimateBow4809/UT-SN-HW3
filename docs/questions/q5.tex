@@ -1,0 +1,44 @@
+
+
+\begin{question}
+	\questiontext{Evolution of a School Social Network}
+	The order of what questions appear here is not the same as the homework itself
+	\begin{subquestion}{Compare smokers and non-smokers: Feature distributions. and Behavioral and attribute evolution over time}
+		\answer{
+		after running our analysis here is what we achieved
+		
+		\begin{center}
+			\begin{tabular}{lcccccccc}				
+				\hline
+				\textbf{Day} &  \textbf{Is Smoker} &  \textbf{Connections} & \textbf{Football} & \textbf{Movies}  & \textbf{Clubs} &\textbf{Study}&  \textbf{ Age} &  \textbf{Gender}  \\
+				\hline
+						1&      False&            0.44&  0.25&  0.43&  0.20&  2.57&  15.86&  0.31 \\
+						1&       True&            0.30&  0.55&  0.25&  0.20&  2.60&  16.85&  0.10  \\
+						30&      False&            2.45&  0.31&  0.42&  0.24&  2.52&  15.80&  0.30  \\
+						30&       True&           13.82&  0.55&  0.58&  0.17&  2.62&  16.72&  0.17  \\
+						60&      False&            8.50&  0.48&  0.60&  0.44&  2.56&  15.79&  0.28 \\
+						60&       True&           32.88&  0.59&  0.59&  0.21&  1.52&  16.45&  0.26  \\
+						90&      False&           21.14&  0.54&  0.66&  0.68&  2.06&  15.90&  0.26  \\
+						90&       True&           37.61&  0.71&  0.75&  0.31&  1.08&  16.11&  0.28 \\
+				\hline
+			\end{tabular}
+			\label{table:avg}
+		\end{center}
+		\begin{enumerate}
+			\item \textbf{Social Connections}: our graph on day 1 was very sparse and as time went on did it actually become connected and we see the increase on average Social Connections shown in Table~\ref{table:avg} which reflects this fact but one interesting thing to note is smokers on average had way more social connections throughout the experiment one reason i could think of for this phenomenon is that smokers don't usually smoke alone  they usually have atleast a couple of people around them (smokers or non smokers) and sometimes these hangouts actually do lead to more people becoming smokers
+			\item  \textbf{Football}: not much can be said about this alone but considering the fact that smokers had more social connections it is actually pretty logical that they play more football aswell since it's a team sport and well you need a team to play it so more social connection mean more chance you could find people who are willing to play football with you another interesting fact that can be said here is if you look at day 60 and compare it to day 90 there is a sudden spike on there for \textbf{Smokers} and this is due to \textbf{Membership closure} by our calculation from day $60$ to $90$ there were $45$ instances of \textbf{Membership closure} which from that were $25$ smokers added.
+			\item \textbf{Movies}: This item is pretty similar to the last item in which people usually go to the movies in groups so having high social connections correlates well with this activity and also the same as football we can see a spike in \textbf{Smokers} who went to the movies this is also due to \textbf{Membership closure} by our calculation from day $60$ to $90$ there were $145$ instances of \textbf{Membership closure} which from that were $28$smokers added.
+			\item  \textbf{Clubs}:  This item in particular smokers didn't enjoy as much as the others on the contrary non-smokers had a blast with this activity as this was the highest their activity.
+			\item  \textbf{Study}: in this item what we see is that at the start we are close to our average of $3$ but as time goes on first of all we see a downshift of studying so both smoker and non smokers are not studying that much anymore this could have causes unrelated to smoking our test period could have started at the end of the students exams and they didn't have anything to study for for 3 months but if we put that aside what we can clearly see is that non-smokers are far less likely to study compared to smokers and their numbers dropped way faster and reached rock bottom by our analysis nothing major actually happened till day 60 but to start with at first there were 2 people out of the 13 who studied at the max level which were smoking both of these people alongside another persion degraded to level 3 at the start of day 60 also 6 people out of the 8 that left level 4 to go to level 2 were smokers and we can also conclude that most of the people who went from level 2 and 3 to level 1 were also smokers this caused a big \textbf{Membership Closure} of 55 on study level 2 and this trend continued on to day 90 where most of the students are smokers and on level 1  this caused a horrific \textbf{Membership Closure}   of 355 on this level which suddenly dropped the average study of both smokers and non smokers
+			\item  \textbf{Age}: from our analysis on this item one thing was certain the smoking problem started from the higher age-group of 18 and spread down as we saw in our calculations at the start 11 out of the 20 smokers were 18 year olds and also 2 out of the most degree-centralized individuals were also 18 and smokers so this lead to an epidemic that spread through all of the years and at the end of day 90 we have a very close margin for smokers between age groups. what we had in this item was \textbf{Focal Closure} as in people with the same age started on becoming friends. based on their age•
+			\item  \textbf{Gender}: for this item we really don't have much to say since the average we computed is almost identical to the weighted average of $0.275$ which is the weighted average of the genders so in this case there wasn't any dominance enforced by gender or gender norms here. 
+		\end{enumerate}
+	}
+	\end{subquestion}
+	\begin{subquestion}{Compute degree centrality, identify the top 5 most central students at the end of evolution,
+			and analyze their role in the network.}
+		\answer{
+		
+		}
+	\end{subquestion}
+\end{question}
