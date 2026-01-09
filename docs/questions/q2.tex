@@ -1,0 +1,44 @@
+\begin{question}
+	\questiontext{Graph Reduction in Large and Irregular Signed Networks}
+	
+	\begin{subquestion}{Using the standard graph reduction algorithm based on positive connected components, construct the reduced graph $G'$. Clearly specify the vertices of $G'$ (i.e., the supernodes), listing the original nodes contained in each supernode.}
+		\answer{
+			After applying the graph reduction algorithm, we obtain five supernodes, listed below:
+			\begin{itemize}
+				\item Supernode $A$ containing nodes $\{6,7,8\}$
+				\item Supernode $B$ containing nodes $\{1,2,3,4,5\}$
+				\item Supernode $C$ containing nodes $\{14,15,16,17,18\}$
+				\item Supernode $D$ containing nodes $\{10,11,12,13\}$
+				\item Supernode $E$ containing node $\{9\}$
+			\end{itemize}
+			
+			All edges in the reduced graph are annotated with a negative sign. The edge set of the reduced graph is
+			$\{AB, BC, CD, DE, EA, BD\}$.
+		}
+	\end{subquestion}
+	
+	\begin{subquestion}{By analyzing the structure of the reduced graph $G'$, determine whether the original network $G$ satisfies the property of strong structural balance. Provide your argument solely based on the examination of cycles present in the graph.}
+		\answer{
+			A reduced graph violates strong structural balance if it contains a cycle with an odd number of negative edges. In the reduced graph $G'$, the cycle $ABCDEA$ consists of five edges, all of which are negative. Since this cycle has an odd length, the graph is not strongly structurally balanced.
+		}
+	\end{subquestion}
+	
+	\begin{subquestion}{The objective is to transform the reduced graph $G'$ into a fully bipolar structure in accordance with the definition of strong structural balance, such that the supernodes are partitioned into exactly two opposing coalitions. Determine the minimum number of edge sign changes (from negative to positive) required to achieve this configuration. Additionally, specify which edge or edges in the reduced graph $G'$ must be modified in order to obtain the desired bipolar partition.}
+		\answer{
+			To address this question, we work directly with the reduced graph obtained in the previous subquestion. Among all pairs of supernodes, the maximum number of inconsistencies that must be resolved is two. We therefore select supernodes $C$ and $D$ as the initial representatives of the two opposing coalitions.
+			
+			Supernode $A$ is initially neutral with respect to both coalitions and is temporarily left unassigned. Supernode $B$ is optimally assigned to the coalition containing $D$, since this requires only a single sign change: flipping the sign of edge $4 \to 11$, which corresponds to edge $BD$ in the reduced graph.
+			
+			With this assignment, supernode $A$ is placed in the coalition containing $C$. For supernode $E$, there are two equally optimal options, each requiring one sign change. These correspond to flipping either edge $7 \to 9$ or $9 \to 10$. For concreteness, we choose to flip the sign of edge $9 \to 10$, which corresponds to edge $ED$ in the reduced graph, thereby assigning $E$ to the coalition containing $D$.
+			
+			After performing two edge sign changes in total, the network achieves strong structural balance. Although this initially suggests a bipartition of $\{A, C\}$ and $\{B, D, E\}$, the sign changes cause supernodes $B$ and $E$ to merge with $D$. As a result, the reduced graph now consists of three supernodes:
+			\begin{itemize}
+				\item Supernode $A$ containing nodes $\{6,7,8\}$
+				\item Supernode $C$ containing nodes $\{14,15,16,17,18\}$
+				\item Supernode $D$ containing nodes $\{1,2,3,4,5,9,10,11,12,13\}$
+			\end{itemize}
+			
+			The final reduced graph contains two negative edges, $AD$ and $CD$, and satisfies the conditions for strong structural balance.
+		}
+	\end{subquestion}
+\end{question}
