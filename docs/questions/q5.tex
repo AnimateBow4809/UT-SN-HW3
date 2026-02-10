@@ -1,0 +1,285 @@
+
+
+\begin{question}
+	\questiontext{Evolution of a School Social Network}
+	The order of what questions appear here is not the same as the homework itself
+	\begin{subquestion}{Compare smokers and non-smokers: Feature distributions. and Behavioral and attribute evolution over time}
+		\answer{
+		after running our analysis here is what we achieved
+		
+		\begin{center}
+			Smokers and non-smokers Feature distributions over time
+			\begin{tabular}{lcccccccc}				
+				\hline
+				Day &  Is Smoker & Connections & Football & Movies  & Clubs &Study&  Age &  Gender  \\
+				\hline
+						1&      False&            0.44&  0.25&  0.43&  0.20&  2.57&  15.86&  0.31 \\
+						1&       True&            0.30&  0.55&  0.25&  0.20&  2.60&  16.85&  0.10  \\
+						30&      False&            2.45&  0.31&  0.42&  0.24&  2.52&  15.80&  0.30  \\
+						30&       True&           13.82&  0.55&  0.58&  0.17&  2.62&  16.72&  0.17  \\
+						60&      False&            8.50&  0.48&  0.60&  0.44&  2.56&  15.79&  0.28 \\
+						60&       True&           32.88&  0.59&  0.59&  0.21&  1.52&  16.45&  0.26  \\
+						90&      False&           21.14&  0.54&  0.66&  0.68&  2.06&  15.90&  0.26  \\
+						90&       True&           37.61&  0.71&  0.75&  0.31&  1.08&  16.11&  0.28 \\
+				\hline
+			\end{tabular}
+			\label{table:avg}
+		\end{center}
+		\begin{enumerate}
+			\item \textbf{Social Connections}: our graph on day 1 was very sparse and as time went on did it actually become connected and we see the increase on average Social Connections shown in Table~\ref{table:avg} which reflects this fact but one interesting thing to note is smokers on average had way more social connections throughout the experiment one reason i could think of for this phenomenon is that smokers don't usually smoke alone  they usually have atleast a couple of people around them (smokers or non smokers) and sometimes these hangouts actually do lead to more people becoming smokers
+			\item  \textbf{Football}: not much can be said about this alone but considering the fact that smokers had more social connections it is actually pretty logical that they play more football aswell since it's a team sport and well you need a team to play it so more social connection mean more chance you could find people who are willing to play football with you another interesting fact that can be said here is if you look at day 60 and compare it to day 90 there is a sudden spike on there for \textbf{Smokers} and this is due to \textbf{Membership closure} by our calculation from day $60$ to $90$ there were $45$ instances of \textbf{Membership closure} which from that were $25$ smokers added.
+			\item \textbf{Movies}: This item is pretty similar to the last item in which people usually go to the movies in groups so having high social connections correlates well with this activity and also the same as football we can see a spike in \textbf{Smokers} who went to the movies this is also due to \textbf{Membership closure} by our calculation from day $60$ to $90$ there were $145$ instances of \textbf{Membership closure} which from that were $28$smokers added.
+			\item  \textbf{Clubs}:  This item in particular smokers didn't enjoy as much as the others on the contrary non-smokers had a blast with this activity as this was the highest their activity.
+			\item  \textbf{Study}: in this item what we see is that at the start we are close to our average of $3$ but as time goes on first of all we see a downshift of studying so both smoker and non smokers are not studying that much anymore this could have causes unrelated to smoking our test period could have started at the end of the students exams and they didn't have anything to study for for 3 months but if we put that aside what we can clearly see is that non-smokers are far less likely to study compared to smokers and their numbers dropped way faster and reached rock bottom by our analysis nothing major actually happened till day 60 but to start with at first there were 2 people out of the 13 who studied at the max level which were smoking both of these people alongside another persion degraded to level 3 at the start of day 60 also 6 people out of the 8 that left level 4 to go to level 2 were smokers and we can also conclude that most of the people who went from level 2 and 3 to level 1 were also smokers this caused a big \textbf{Membership Closure} of 55 on study level 2 and this trend continued on to day 90 where most of the students are smokers and on level 1  this caused a horrific \textbf{Membership Closure}   of 355 on this level which suddenly dropped the average study of both smokers and non smokers
+			\item  \textbf{Age}: from our analysis on this item one thing was certain the smoking problem started from the higher age-group of 18 and spread down as we saw in our calculations at the start 11 out of the 20 smokers were 18 year olds and also 2 out of the most degree-centralized individuals were also 18 and smokers so this lead to an epidemic that spread through all of the years and at the end of day 90 we have a very close margin for smokers between age groups. what we had in this item was \textbf{Focal Closure} as in people with the same age started on becoming friends. based on their age.
+			\item  \textbf{Gender}: for this item we really don't have much to say since the average we computed is almost identical to the weighted average of $0.275$ which is the weighted average of the genders so in this case there wasn't any dominance enforced by gender or gender norms here.  on a quick side note in this table we have assumed boys gender to be equal to $0$ and girls be equal to $1$. 
+		\end{enumerate}
+	}
+	\end{subquestion}
+	\begin{subquestion}{Compute degree centrality, identify the top 5 most central students at the end of evolution,
+			and analyze their role in the network.}
+		\answer{
+			What we can see overtime in Table day (30) is the fact that on day 30 everyone in the top 5 centrality are all smokers what this contributes to our cause is the fact this provides a basis for membership closure to happen and thus increase the number of smokers class wide another interesting fact that is evident in Tables for days~(0,30,60) is that the top 5 is strictly dominated by class 1 and on Table day (90) is tied with class 1 with this analysis combined with our last question we can conclude that this epidemic started among older members of class 1 and later spread throughout the student chain
+			
+			\begin{center}
+			 Top 5 Students in terms of Degree Centrality - Day 0
+				\begin{tabular}{lccccccccc}					
+					\hline
+					ID & Gender & Age & Studies & Class & Sports & Movies & Club & Smokes & Centrality \\
+					\hline
+					13 & Boy & 15 & 2 & 1 & Yes & Yes & No & Yes & 0.058 \\
+					17 & Girl & 18 & 1 & 1 & Yes & Yes & Yes & Yes & 0.058 \\
+					64 & Boy & 15 & 2 & 3 & No & Yes & No & No & 0.058 \\
+					112 & Boy & 18 & 2 & 4 & Yes & No & No & No & 0.058 \\
+					0 & Boy & 17 & 1 & 1 & Yes & No & No & No & 0.050 \\
+					\hline
+				\end{tabular}
+				\label{table:d0}
+			\end{center}
+			
+			% Day 30 Table
+			\begin{center}								
+				Top 5 Students in terms of Degree Centrality - Day 30
+				\begin{tabular}{lccccccccc}
+					\hline
+					ID & Gender & Age & Studies & Class & Sports & Movies & Club & Smokes & Centrality \\
+					\hline
+					116 & Girl & 15 & 1 & 4 & Yes & Yes & Yes & Yes & 0.201 \\
+					14 & Girl & 17 & 2 & 1 & Yes & Yes & No & Yes & 0.194 \\
+					21 & Boy & 18 & 1 & 1 & Yes & Yes & No & Yes & 0.180 \\
+					77 & Boy & 17 & 3 & 3 & Yes & Yes & No & Yes & 0.180 \\
+					4 & Boy & 18 & 1 & 1 & Yes & No & Yes & Yes & 0.165 \\
+					\hline
+				\end{tabular}
+				\label{table:d30}
+			\end{center}
+			
+			% Day 60 Table
+			\begin{center}
+				Top 5 Students in terms of Degree Centrality - Day 60
+				\begin{tabular}{lccccccccc}				
+					\hline
+					ID & Gender & Age & Studies & Class & Sports & Movies & Club & Smokes & Centrality \\
+					\hline
+					14 & Girl & 17 & 2 & 1 & Yes & Yes & No & Yes & 0.424 \\
+					37 & Boy & 18 & 1 & 2 & Yes & No & No & Yes & 0.403 \\
+					116 & Girl & 15 & 1 & 4 & Yes & Yes & Yes & Yes & 0.403 \\
+					21 & Boy & 18 & 1 & 1 & Yes & Yes & No & Yes & 0.396 \\
+					4 & Boy & 18 & 1 & 1 & Yes & No & Yes & Yes & 0.374 \\
+					\hline
+				\end{tabular}
+					\label{table:d60}
+			\end{center}
+			
+			% Day 90 Table
+			\begin{center}								
+				Top 5 Students in terms of Degree Centrality - Day 90
+				\begin{tabular}{lccccccccc}
+					\hline					
+					ID & Gender & Age & Studies & Class & Sports & Movies & Club & Smokes & Centrality \\
+					\hline
+					37 & Boy & 18 & 1 & 2 & Yes & No & No & Yes & 0.446 \\
+					116 & Girl & 15 & 1 & 4 & Yes & Yes & Yes & Yes & 0.446 \\
+					14 & Girl & 17 & 1 & 1 & Yes & Yes & No & Yes & 0.439 \\
+					17 & Girl & 18 & 1 & 1 & Yes & Yes & Yes & Yes & 0.417 \\
+					30 & Boy & 16 & 1 & 2 & No & Yes & No & Yes & 0.417 \\
+					\hline					
+				\end{tabular}
+				\label{table:d90}
+			\end{center}
+		
+		}
+	\end{subquestion}
+	\begin{subquestion}{Identify triadic closure events (friend of a friend becomes friend).}
+		\answer{
+			triadic closure events are given in the table below some things to note are:
+			\begin{enumerate}
+				\item only a fraction of the open triads from the previous time stamps close on the next time stamp
+				\item  some closed triads and triadic closures happen between our timestamps. meaning many friendships and closures are not available in our dataset.in another sense some friendships have formed and caused triadic closures on their own between timestamps but since our data is limited we could not count them
+				\item the rate in which closed triads is growing far exceeds the rate of which the open triads is growing meaning if we had another few time stamps we might even see the number of open triads decreasing
+			\end{enumerate}
+		\begin{center}			
+			Triadic Closure Metrics Across Time Points.
+			\begin{tabular}{lccc}
+				\hline
+				Day & Closed Triads & Open Triads Missing 1 Edge & Number of Triadic Closure \\
+				\hline
+				0 & 0 & 12 & -- \\
+				30 & 328 & 2081 & 12 \\
+				60 & 5946 & 13779 & 1424 \\
+				90 & 14812 & 21684 & 2514 \\
+				\hline
+			\end{tabular}
+		\end{center}
+		}
+	\end{subquestion}
+	\begin{subquestion}{Analyze membership closure patterns (connections within the same class).}
+		\answer{
+			to analyze membership closure patterns for smokers within class we can observe the table below which indicates the tendency for membership closure as we see the number of relationships involving smokers inside a class increases we can also see how quartet relationships have affected the population in how the number of smoker relationships between classes have also increased what is clearly evident inside the table below is the fact that many of the smoking relationships have started from class 1 and 3 and spread throughout the school
+		\begin{center}
+			Relationships of students based on their class where atleast one head of the relationship smokes
+		\begin{tabular}{lcccc}
+			\hline
+			\textbf{Relationship} & \textbf{Day 0} & \textbf{Day 30} & \textbf{Day 60} & \textbf{Day 90} \\
+			\hline
+			Within Class number\_1 & 0 & 51 & 138 & 371 \\
+			Within Class number\_2 & 1 & 14 & 35 & 251 \\
+			Within Class number\_3 & 0 & 46 & 104 & 306 \\
+			Within Class number\_4 & 0 & 17 & 48 & 247 \\
+			Between Class number\_1 \& number\_2 & 1 & 20 & 91 & 75 \\
+			Between Class number\_1 \& number\_3 & 0 & 31 & 163 & 137 \\
+			Between Class number\_1 \& number\_4 & 1 & 16 & 84 & 81 \\
+			Between Class number\_2 \& number\_3 & 0 & 14 & 74 & 57 \\
+			Between Class number\_2 \& number\_4 & 0 & 9 & 49 & 35 \\
+			Between Class number\_3 \& number\_4 & 2 & 12 & 77 & 65 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	}
+	\end{subquestion}
+	\begin{subquestion}{Inspect and analyze triadic closure, focal closure, and membership closure over time,
+			with a focus on smokers.,Analyze focal closure patterns related to smoking, and infer the reasons for the emer-
+			gence of new smokers in terms of network closure mechanisms.}
+		\answer{
+			in this section we have summarized all of the attributes in 4 tables corresponding to their dates what is clearly evident is the fact that focal closure dominates in terms of numbers as we see that people with the same attributes such as age,gender,... are far likely to become friends it is only in day 90 that we see an intense number of membership closures zooming in on smokers there are some facts to be considered
+			\begin{enumerate}
+				\item most relationship between smokers was originally formed by the 2 parties smoking a.k.a focal
+				\item the only reason that we see a sudden spike for membership closure on day 90 is that the network has become strongly connected at that point and even a single number of additional smoker closes many membership triads
+			\end{enumerate}
+			another thing to note about the state of the population is the fact that as the number of connection has increased the average amount of study time for students has rapidly decreased in such a way that we have 355 membership closures for $study 1$ category on day 90 meaning low effort students have spread among the population
+			
+		\begin{center}		
+			Day 1 Attribute Summary
+			\begin{tabular}{lccccc}
+				\hline
+				Attribute          & Total & New & Left & Focal Cl. & Memb. Cl. \\ \hline
+				Gender\_boy        & 87    & 87  & -    & -         & -         \\
+				Gender\_girl       & 33    & 33  & -    & -         & -         \\
+				Age\_17            & 29    & 29  & -    & -         & -         \\
+				Age\_18            & 22    & 22  & -    & -         & -         \\
+				Age\_16            & 22    & 22  & -    & -         & -         \\
+				Age\_15            & 24    & 24  & -    & -         & -         \\
+				Age\_14            & 23    & 23  & -    & -         & -         \\
+				Studies\_3         & 28    & 28  & -    & -         & -         \\
+				Studies\_4         & 18    & 18  & -    & -         & -         \\
+				Studies\_1         & 34    & 34  & -    & -         & -         \\
+				Studies\_2         & 27    & 27  & -    & -         & -         \\
+				Studies\_5         & 13    & 13  & -    & -         & -         \\
+				Class number\_1    & 30    & 30  & -    & -         & -         \\
+				Class number\_2    & 30    & 30  & -    & -         & -         \\
+				Class number\_3    & 30    & 30  & -    & -         & -         \\
+				Class number\_4    & 30    & 30  & -    & -         & -         \\
+				Plays Football     & 36    & 36  & -    & -         & -         \\
+				Watches Movies     & 48    & 48  & -    & -         & -         \\
+				Club               & 24    & 24  & -    & -         & -         \\
+				Smokes             & 20    & 20  & -    & -         & -         \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			Day 30 Attribute Summary
+						\begin{tabular}{lccccc}
+				\hline
+				Attribute          & Total & New & Left & Focal Cl. & Memb. Cl. \\ \hline
+				Gender\_boy        & 87    & 0   & 0    & 161       & 0         \\
+				Gender\_girl       & 33    & 0   & 0    & 21        & 0         \\
+				Age\_17            & 29    & 0   & 0    & 9         & 0         \\
+				Age\_18            & 22    & 0   & 0    & 37        & 0         \\
+				Age\_16            & 22    & 0   & 0    & 6         & 0         \\
+				Age\_15            & 24    & 0   & 0    & 13        & 0         \\
+				Age\_14            & 23    & 0   & 0    & 5         & 0         \\
+				Studies\_3         & 26    & 2   & 4    & 11        & 0         \\
+				Studies\_4         & 19    & 2   & 1    & 6         & 1         \\
+				Studies\_2         & 25    & 2   & 4    & 11        & 0         \\
+				Studies\_1         & 37    & 3   & 0    & 18        & 1         \\
+				Studies\_5         & 13    & 0   & 0    & 0         & 0         \\
+				Class number\_1    & 30    & 0   & 0    & 66        & 0         \\
+				Class number\_2    & 30    & 0   & 0    & 28        & 0         \\
+				Class number\_3    & 30    & 0   & 0    & 53        & 0         \\
+				Class number\_4    & 30    & 0   & 0    & 39        & 0         \\
+				Plays Football     & 45    & 10  & 1    & 64        & 10        \\
+				Watches Movies     & 56    & 10  & 2    & 65        & 1         \\
+				Club               & 27    & 3   & 0    & 15        & 3         \\
+				Smokes             & 29    & 9   & 0    & 73        & 3         \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			Day 60 Attribute Summary
+						\begin{tabular}{lccccc}
+				\hline
+				Attribute          & Total & New & Left & Focal Cl. & Memb. Cl. \\ \hline
+				Gender\_boy        & 87    & 0   & 0    & 413       & 0         \\
+				Gender\_girl       & 33    & 0   & 0    & 51        & 0         \\
+				Age\_17            & 29    & 0   & 0    & 17        & 0         \\
+				Age\_18            & 22    & 0   & 0    & 47        & 0         \\
+				Age\_16            & 22    & 0   & 0    & 26        & 0         \\
+				Age\_15            & 24    & 0   & 0    & 32        & 0         \\
+				Age\_14            & 23    & 0   & 0    & 14        & 0         \\
+				Studies\_3         & 22    & 3   & 7    & 4         & 1         \\
+				Studies\_4         & 11    & 0   & 8    & 2         & 0         \\
+				Studies\_1         & 50    & 13  & 0    & 72        & 54        \\
+				Studies\_2         & 27    & 8   & 6    & 4         & 2         \\
+				Studies\_5         & 10    & 0   & 3    & 2         & 0         \\
+				Class number\_1    & 30    & 0   & 0    & 100       & 0         \\
+				Class number\_2    & 30    & 0   & 0    & 33        & 0         \\
+				Class number\_3    & 30    & 0   & 0    & 70        & 0         \\
+				Class number\_4    & 30    & 0   & 0    & 72        & 0         \\
+				Plays Football     & 63    & 18  & 0    & 249       & 21        \\
+				Watches Movies     & 72    & 16  & 0    & 248       & 10        \\
+				Club               & 44    & 17  & 0    & 40        & 17        \\
+				Smokes             & 42    & 13  & 0    & 222       & 17        \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			Day 90 Attribute Summary
+\begin{tabular}{lccccc}
+				\hline
+				Attribute          & Total & New & Left & Focal Cl. & Memb. Cl. \\ \hline
+				Gender\_boy        & 87    & 0   & 0    & 513       & 0         \\
+				Gender\_girl       & 33    & 0   & 0    & 53        & 0         \\
+				Age\_17            & 29    & 0   & 0    & 65        & 0         \\
+				Age\_18            & 22    & 0   & 0    & 22        & 0         \\
+				Age\_16            & 22    & 0   & 0    & 33        & 0         \\
+				Age\_15            & 24    & 0   & 0    & 36        & 0         \\
+				Age\_14            & 23    & 0   & 0    & 35        & 0         \\
+				Studies\_1         & 79    & 40  & 11   & 47        & 355       \\
+				Studies\_2         & 26    & 17  & 18   & 9         & 11        \\
+				Studies\_3         & 13    & 7   & 16   & 3         & 1         \\
+				Studies\_4         & 1     & 1   & 11   & 0         & 0         \\
+				Studies\_5         & 1     & 1   & 10   & 0         & 0         \\
+				Class number\_1    & 30    & 0   & 0    & 217       & 0         \\
+				Class number\_2    & 30    & 0   & 0    & 285       & 0         \\
+				Class number\_3    & 30    & 0   & 0    & 212       & 0         \\
+				Class number\_4    & 30    & 0   & 0    & 225       & 0         \\
+				Plays Football     & 77    & 14  & 0    & 254       & 45        \\
+				Watches Movies     & 86    & 14  & 0    & 343       & 145       \\
+				Club               & 56    & 12  & 0    & 142       & 33        \\
+				Smokes             & 70    & 28  & 0    & 75        & 222       \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		}
+	\end{subquestion}
+\end{question}
